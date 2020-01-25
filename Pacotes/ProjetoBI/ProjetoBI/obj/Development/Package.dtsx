@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/9/2020 9:39:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CASAPC"
+  DTS:CreatorName="CASAPC\cauen"
+  DTS:DTSID="{2553FCB5-EDDC-4C43-A682-E45868FE7F81}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionGUID="{7B917ADD-F731-4DDF-8C25-058490E14DEC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables />
+</DTS:Executable>
