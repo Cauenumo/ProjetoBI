@@ -1,0 +1,435 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/25/2020 10:02:31 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CASAPC"
+  DTS:CreatorName="CASAPC\cauen"
+  DTS:DTSID="{8556C85D-FF82-4AEC-BCDA-A3D2C38CDF58}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="StageCargaFornecedor"
+  DTS:PackageType="5"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{1B7B7BDC-F17B-4D55-A42D-F20E58C3E637}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carrega Tabela de STAGE Fornecedor"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{01816A6F-EA12-46F5-AC68-D4832474DA8A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carrega Tabela de STAGE Fornecedor"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Tabela OLTP_FORNECEDOR"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT IDFORNECEDOR, NOME FROM FORNECEDOR</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Connections[OleDbConnection]"
+                  connectionManagerID="{A3571619-E919-4ECB-A91F-D6ADDD0DA6E0}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[COMERCIO_OLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
+                      length="30"
+                      lineageId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output].Columns[NOME]"
+                      name="NOME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output].Columns[IDFORNECEDOR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output].ExternalColumns[IDFORNECEDOR]"
+                      lineageId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output].Columns[IDFORNECEDOR]"
+                      name="IDFORNECEDOR"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output].ExternalColumns[IDFORNECEDOR]"
+                      dataType="i4"
+                      name="IDFORNECEDOR" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Error Output].Columns[IDFORNECEDOR]"
+                      dataType="i4"
+                      lineageId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Error Output].Columns[IDFORNECEDOR]"
+                      name="IDFORNECEDOR" />
+                    <outputColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Error Output].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Error Output].Columns[NOME]"
+                      name="NOME" />
+                    <outputColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Tabela STAGE_FORNECEDOR"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ST_FORNECEDOR]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Connections[OleDbConnection]"
+                  connectionManagerID="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[COMERCIO_STAGE]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Inputs[OLE DB Destination Input].Columns[NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOME"
+                      externalMetadataColumnId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
+                      lineageId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output].Columns[NOME]" />
+                    <inputColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Inputs[OLE DB Destination Input].Columns[IDFORNECEDOR]"
+                      cachedDataType="i4"
+                      cachedName="IDFORNECEDOR"
+                      externalMetadataColumnId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Inputs[OLE DB Destination Input].ExternalColumns[IDFORNECEDOR]"
+                      lineageId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output].Columns[IDFORNECEDOR]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Inputs[OLE DB Destination Input].ExternalColumns[IDFORNECEDOR]"
+                      dataType="i4"
+                      name="IDFORNECEDOR" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Carrega Tabela de STAGE Fornecedor.Paths[OLE DB Source Output]"
+              endId="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Trunca Tabela STAGE Fornecedor"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B06251A7-0969-468C-9D7C-26F0CBF2C0EB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Trunca Tabela STAGE Fornecedor"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE ST_FORNECEDOR" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7572A7D7-4905-424A-A471-E0755799EFD9}"
+      DTS:From="Package\Trunca Tabela STAGE Fornecedor"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Carrega Tabela de STAGE Fornecedor" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="256,41.6"
+          Id="Package\Carrega Tabela de STAGE Fornecedor"
+          TopLeft="5.50000000000003,107.1" />
+        <NodeLayout
+          Size="236.8,41.6"
+          Id="Package\Trunca Tabela STAGE Fornecedor"
+          TopLeft="15.1,5.50000000000007" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="133.5,47.1000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Carrega Tabela de STAGE Fornecedor">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="210.4,41.6"
+          Id="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR"
+          TopLeft="9.10000000000001,5.50000000000007" />
+        <NodeLayout
+          Size="217.6,41.6"
+          Id="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR"
+          TopLeft="5.50000000000001,107.1" />
+        <EdgeLayout
+          Id="Package\Carrega Tabela de STAGE Fornecedor.Paths[OLE DB Source Output]"
+          TopLeft="114.3,47.1000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carrega Tabela de STAGE Fornecedor\Tabela OLTP_FORNECEDOR">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carrega Tabela de STAGE Fornecedor\Tabela STAGE_FORNECEDOR">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
