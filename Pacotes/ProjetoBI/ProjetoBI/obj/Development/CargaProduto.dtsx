@@ -1,0 +1,2135 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/9/2020 9:39:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CASAPC"
+  DTS:CreatorName="CASAPC\cauen"
+  DTS:DTSID="{8EA1A5DE-1DF8-450A-B5CE-51A5829F908E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="CargaProduto"
+  DTS:PackageType="5"
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{E69F2F84-0CC4-43E5-A7FB-BCBB1DF86E14}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carga DW"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{DE4B53E0-63D6-4615-929F-B1AFB7489D8C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga DW">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Carga DW\Carrega tabela DW Produto"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{79CAE3F2-10AB-4A7C-8D05-6E9B76A25B59}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Carrega tabela DW Produto"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Outputs[Derived Column Output].Columns[FIM]"
+                          dataType="dbTimeStamp"
+                          description="FIM"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Outputs[Derived Column Output].Columns[FIM]"
+                          name="FIM"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_DBTIMESTAMP)(@[System::StartTime])</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_DBTIMESTAMP)(@[System::StartTime])</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column 1"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Outputs[Derived Column Output].Columns[INICIO]"
+                          dataType="dbTimeStamp"
+                          description="INICIO"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Outputs[Derived Column Output].Columns[INICIO]"
+                          name="INICIO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_DBTIMESTAMP)(@[System::StartTime])</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_DBTIMESTAMP)(@[System::StartTime])</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                  name="OLE DB Command"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [DW].[DIM_PRODUTO] SET [FIM] = ? WHERE [IDPRODUTO] = ? AND [FIM] IS NULL</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Connections[OleDbConnection]"
+                      connectionManagerID="{73CEFA2D-8306-42AB-A207-EBE6FCDDD68B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[COMERCIO_DW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Inputs[OLE DB Command Input].Columns[IDPRODUTO]"
+                          cachedDataType="i4"
+                          cachedName="IDPRODUTO"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[IDPRODUTO]" />
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Inputs[OLE DB Command Input].Columns[FIM]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="FIM"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Outputs[Derived Column Output].Columns[FIM]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="dbTimeStamp"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          dataType="i4"
+                          name="Param_1">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension"
+                  componentClassID="Microsoft.SCD"
+                  contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+                  description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+                  name="Slowly Changing Dimension"
+                  version="3">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SELECT statement used to create a schema rowset."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [CUSTO_MEDIO], [IDPRODUTO], [NOME], [VALOR_UNITARIO],[INICIO],[FIM] FROM [DW].[DIM_PRODUTO]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                      name="CurrentRowWhere">[INICIO] IS NOT NULL AND [FIM] IS NULL</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                      name="UpdateChangingAttributeHistory">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                      name="FailOnFixedAttributeChange">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the column name for the inferred member."
+                      name="InferredMemberIndicator"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether inferred member updates are detected."
+                      name="EnableInferredMember">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                      name="FailOnLookupFailure">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies that all rows in the input are new or the transformation detects the change type."
+                      name="IncomingRowChangeType"
+                      typeConverter="IncomingRowChangeType">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Connections[LookupConnection]"
+                      connectionManagerID="{73CEFA2D-8306-42AB-A207-EBE6FCDDD68B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[COMERCIO_DW]"
+                      description="Defines the connection to use for lookups in the dimension table"
+                      name="LookupConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                      name="Slowly Changing Dimension Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[CUSTO_MEDIO]"
+                          cachedDataType="numeric"
+                          cachedName="CUSTO_MEDIO"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CUSTO_MEDIO]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[CUSTO_MEDIO]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">3</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[IDPRODUTO]"
+                          cachedDataType="i4"
+                          cachedName="IDPRODUTO"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[IDPRODUTO]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[IDPRODUTO]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[PRODUTO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="PRODUTO"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NOME]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[PRODUTO]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">3</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[VALOR_UNITARIO]"
+                          cachedDataType="numeric"
+                          cachedName="VALOR_UNITARIO"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[VALOR_UNITARIO]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[VALOR_UNITARIO]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">3</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CUSTO_MEDIO]"
+                          dataType="numeric"
+                          name="CUSTO_MEDIO"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[IDPRODUTO]"
+                          dataType="i4"
+                          name="IDPRODUTO" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="NOME" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[VALOR_UNITARIO]"
+                          dataType="numeric"
+                          name="VALOR_UNITARIO"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[INICIO]"
+                          dataType="dbTimeStamp"
+                          name="INICIO" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[FIM]"
+                          dataType="dbTimeStamp"
+                          name="FIM" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                      description="Unchanged rows"
+                      exclusionGroup="1"
+                      name="Unchanged Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Outputs[New Output]"
+                      description="New rows"
+                      exclusionGroup="1"
+                      name="New Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                      description="Rows with changes in columns tagged FixedAttribute"
+                      exclusionGroup="1"
+                      name="Fixed Attribute Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                      description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                      exclusionGroup="1"
+                      name="Changing Attribute Updates Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                      description="HistoricalAttribute (Type 2) changes result in these new rows"
+                      exclusionGroup="2"
+                      name="Historical Attribute Inserts Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                      description="Information to update unpopulated initial dimension row"
+                      exclusionGroup="1"
+                      name="Inferred Member Updates Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Tabela DW Produto"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[DW].[DIM_PRODUTO]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Connections[OleDbConnection]"
+                      connectionManagerID="{73CEFA2D-8306-42AB-A207-EBE6FCDDD68B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[COMERCIO_DW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].Columns[IDPRODUTO]"
+                          cachedDataType="i4"
+                          cachedName="IDPRODUTO"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[IDPRODUTO]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[IDPRODUTO]" />
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].Columns[INICIO]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="INICIO"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[INICIO]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Outputs[Derived Column Output].Columns[INICIO]" />
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].Columns[PRODUTO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="PRODUTO"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[PRODUTO]" />
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].Columns[VALOR_UNITARIO]"
+                          cachedDataType="numeric"
+                          cachedName="VALOR_UNITARIO"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[VALOR_UNITARIO]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[VALOR_UNITARIO]" />
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].Columns[CUSTO_MEDIO]"
+                          cachedDataType="numeric"
+                          cachedName="CUSTO_MEDIO"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[CUSTO_MEDIO]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[CUSTO_MEDIO]" />
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].Columns[ID_CATEGORIA]"
+                          cachedDataType="i4"
+                          cachedName="ID_CATEGORIA"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[IDCATEGORIA]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[ID_CATEGORIA]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[IDSK]"
+                          dataType="i4"
+                          name="IDSK" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[IDPRODUTO]"
+                          dataType="i4"
+                          name="IDPRODUTO" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[INICIO]"
+                          dataType="dbTimeStamp"
+                          name="INICIO" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[FIM]"
+                          dataType="dbTimeStamp"
+                          name="FIM" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="NOME" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[VALOR_UNITARIO]"
+                          dataType="numeric"
+                          name="VALOR_UNITARIO"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[CUSTO_MEDIO]"
+                          dataType="numeric"
+                          name="CUSTO_MEDIO"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input].ExternalColumns[IDCATEGORIA]"
+                          dataType="i4"
+                          name="IDCATEGORIA" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Tabela Stage Produto"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[ST_PRODUTO]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM COMERCIO_STAGE.dbo.ST_PRODUTO
+WHERE IDPRODUTO NOT IN 
+(SELECT IDPRODUTO FROM COMERCIO_DW.DW.DIM_PRODUTO)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Connections[OleDbConnection]"
+                      connectionManagerID="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[COMERCIO_STAGE]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[IDPRODUTO]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].ExternalColumns[IDPRODUTO]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[IDPRODUTO]"
+                          name="IDPRODUTO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[PRODUTO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].ExternalColumns[PRODUTO]"
+                          length="100"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[PRODUTO]"
+                          name="PRODUTO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[VALOR_UNITARIO]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].ExternalColumns[VALOR_UNITARIO]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[VALOR_UNITARIO]"
+                          name="VALOR_UNITARIO"
+                          precision="10"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[CUSTO_MEDIO]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].ExternalColumns[CUSTO_MEDIO]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[CUSTO_MEDIO]"
+                          name="CUSTO_MEDIO"
+                          precision="10"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[ID_CATEGORIA]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].ExternalColumns[ID_CATEGORIA]"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[ID_CATEGORIA]"
+                          name="ID_CATEGORIA"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].ExternalColumns[IDPRODUTO]"
+                          dataType="i4"
+                          name="IDPRODUTO" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].ExternalColumns[PRODUTO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="PRODUTO" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].ExternalColumns[VALOR_UNITARIO]"
+                          dataType="numeric"
+                          name="VALOR_UNITARIO"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].ExternalColumns[CUSTO_MEDIO]"
+                          dataType="numeric"
+                          name="CUSTO_MEDIO"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].ExternalColumns[ID_CATEGORIA]"
+                          dataType="i4"
+                          name="ID_CATEGORIA" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[IDPRODUTO]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[IDPRODUTO]"
+                          name="IDPRODUTO" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[PRODUTO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[PRODUTO]"
+                          name="PRODUTO" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[VALOR_UNITARIO]"
+                          dataType="numeric"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[VALOR_UNITARIO]"
+                          name="VALOR_UNITARIO"
+                          precision="10"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[CUSTO_MEDIO]"
+                          dataType="numeric"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[CUSTO_MEDIO]"
+                          name="CUSTO_MEDIO"
+                          precision="10"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[ID_CATEGORIA]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[ID_CATEGORIA]"
+                          name="ID_CATEGORIA" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Carga DW\Carrega tabela DW Produto\Union All"
+                  componentClassID="Microsoft.UnionAll"
+                  contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+                  name="Union All"
+                  version="1">
+                  <inputs>
+                    <input
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 1]"
+                      name="Union All Input 1">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 1].Columns[IDPRODUTO]"
+                          cachedDataType="i4"
+                          cachedName="IDPRODUTO"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[IDPRODUTO]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[IDPRODUTO]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 1].Columns[PRODUTO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="PRODUTO"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[PRODUTO]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[PRODUTO]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 1].Columns[VALOR_UNITARIO]"
+                          cachedDataType="numeric"
+                          cachedName="VALOR_UNITARIO"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[VALOR_UNITARIO]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[VALOR_UNITARIO]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 1].Columns[CUSTO_MEDIO]"
+                          cachedDataType="numeric"
+                          cachedName="CUSTO_MEDIO"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[CUSTO_MEDIO]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[CUSTO_MEDIO]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 1].Columns[ID_CATEGORIA]"
+                          cachedDataType="i4"
+                          cachedName="ID_CATEGORIA"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[ID_CATEGORIA]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[ID_CATEGORIA]}</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 2]"
+                      hasSideEffects="true"
+                      name="Union All Input 2">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 2].Columns[IDPRODUTO]"
+                          cachedDataType="i4"
+                          cachedName="IDPRODUTO"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[IDPRODUTO]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[IDPRODUTO]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 2].Columns[PRODUTO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="PRODUTO"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[PRODUTO]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[PRODUTO]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 2].Columns[VALOR_UNITARIO]"
+                          cachedDataType="numeric"
+                          cachedName="VALOR_UNITARIO"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[VALOR_UNITARIO]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[VALOR_UNITARIO]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 2].Columns[CUSTO_MEDIO]"
+                          cachedDataType="numeric"
+                          cachedName="CUSTO_MEDIO"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[CUSTO_MEDIO]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[CUSTO_MEDIO]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 2].Columns[ID_CATEGORIA]"
+                          cachedDataType="i4"
+                          cachedName="ID_CATEGORIA"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[ID_CATEGORIA]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[ID_CATEGORIA]}</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 3]"
+                      dangling="true"
+                      hasSideEffects="true"
+                      name="Union All Input 3">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1]"
+                      name="Union All Output 1">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[IDPRODUTO]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[IDPRODUTO]"
+                          name="IDPRODUTO" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[PRODUTO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[PRODUTO]"
+                          name="PRODUTO" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[VALOR_UNITARIO]"
+                          dataType="numeric"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[VALOR_UNITARIO]"
+                          name="VALOR_UNITARIO"
+                          precision="10"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[CUSTO_MEDIO]"
+                          dataType="numeric"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[CUSTO_MEDIO]"
+                          name="CUSTO_MEDIO"
+                          precision="10"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[ID_CATEGORIA]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1].Columns[ID_CATEGORIA]"
+                          name="ID_CATEGORIA" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Carga DW\Carrega tabela DW Produto.Paths[Derived Column Output]"
+                  endId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Inputs[OLE DB Command Input]"
+                  name="Derived Column Output"
+                  startId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Carga DW\Carrega tabela DW Produto.Paths[Derived Column Output1]"
+                  endId="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Carga DW\Carrega tabela DW Produto.Paths[Historical Attribute Inserts Output]"
+                  endId="Package\Carga DW\Carrega tabela DW Produto\Derived Column.Inputs[Derived Column Input]"
+                  name="Historical Attribute Inserts Output"
+                  startId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]" />
+                <path
+                  refId="Package\Carga DW\Carrega tabela DW Produto.Paths[New Output]"
+                  endId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 1]"
+                  name="New Output"
+                  startId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Outputs[New Output]" />
+                <path
+                  refId="Package\Carga DW\Carrega tabela DW Produto.Paths[OLE DB Command Output]"
+                  endId="Package\Carga DW\Carrega tabela DW Produto\Union All.Inputs[Union All Input 2]"
+                  name="OLE DB Command Output"
+                  startId="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command.Outputs[OLE DB Command Output]" />
+                <path
+                  refId="Package\Carga DW\Carrega tabela DW Produto.Paths[OLE DB Source Output]"
+                  endId="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Carga DW\Carrega tabela DW Produto.Paths[Union All Output 1]"
+                  endId="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1.Inputs[Derived Column Input]"
+                  name="Union All Output 1"
+                  startId="Package\Carga DW\Carrega tabela DW Produto\Union All.Outputs[Union All Output 1]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Popula Stage"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{46C2C4D6-ED24-447F-8DAF-EFC8EC1D9420}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Popula Stage">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Popula Stage\Carrega Tabela de STAGE Produto"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{C7571B7B-F04C-44BC-AF52-E25355356C9C}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Carrega Tabela de STAGE Produto"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Tabela OLTP_PRODUTO"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[CLIENTE]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT IDPRODUTO, PRODUTO, VALOR, CUSTOMEDIO, ID_CATEGORIA FROM PRODUTO</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Connections[OleDbConnection]"
+                      connectionManagerID="{A3571619-E919-4ECB-A91F-D6ADDD0DA6E0}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[COMERCIO_OLTP]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[IDPRODUTO]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].ExternalColumns[IDPRODUTO]"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[IDPRODUTO]"
+                          name="IDPRODUTO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[PRODUTO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].ExternalColumns[PRODUTO]"
+                          length="100"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[PRODUTO]"
+                          name="PRODUTO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[VALOR]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].ExternalColumns[VALOR]"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[VALOR]"
+                          name="VALOR"
+                          precision="10"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[CUSTOMEDIO]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].ExternalColumns[CUSTOMEDIO]"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[CUSTOMEDIO]"
+                          name="CUSTOMEDIO"
+                          precision="10"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[ID_CATEGORIA]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].ExternalColumns[ID_CATEGORIA]"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[ID_CATEGORIA]"
+                          name="ID_CATEGORIA"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].ExternalColumns[IDPRODUTO]"
+                          dataType="i4"
+                          name="IDPRODUTO" />
+                        <externalMetadataColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].ExternalColumns[PRODUTO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="PRODUTO" />
+                        <externalMetadataColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].ExternalColumns[VALOR]"
+                          dataType="numeric"
+                          name="VALOR"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].ExternalColumns[CUSTOMEDIO]"
+                          dataType="numeric"
+                          name="CUSTOMEDIO"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].ExternalColumns[ID_CATEGORIA]"
+                          dataType="i4"
+                          name="ID_CATEGORIA" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[IDPRODUTO]"
+                          dataType="i4"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[IDPRODUTO]"
+                          name="IDPRODUTO" />
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[PRODUTO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[PRODUTO]"
+                          name="PRODUTO" />
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[VALOR]"
+                          dataType="numeric"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[VALOR]"
+                          name="VALOR"
+                          precision="10"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[CUSTOMEDIO]"
+                          dataType="numeric"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[CUSTOMEDIO]"
+                          name="CUSTOMEDIO"
+                          precision="10"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[ID_CATEGORIA]"
+                          dataType="i4"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[ID_CATEGORIA]"
+                          name="ID_CATEGORIA" />
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Tabela STAGE_PRODUTO"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[ST_PRODUTO]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Connections[OleDbConnection]"
+                      connectionManagerID="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[COMERCIO_STAGE]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].Columns[PRODUTO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="PRODUTO"
+                          externalMetadataColumnId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].ExternalColumns[PRODUTO]"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[PRODUTO]" />
+                        <inputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].Columns[VALOR]"
+                          cachedDataType="numeric"
+                          cachedName="VALOR"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].ExternalColumns[VALOR_UNITARIO]"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[VALOR]" />
+                        <inputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].Columns[CUSTOMEDIO]"
+                          cachedDataType="numeric"
+                          cachedName="CUSTOMEDIO"
+                          cachedPrecision="10"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].ExternalColumns[CUSTO_MEDIO]"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[CUSTOMEDIO]" />
+                        <inputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].Columns[ID_CATEGORIA]"
+                          cachedDataType="i4"
+                          cachedName="ID_CATEGORIA"
+                          externalMetadataColumnId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].ExternalColumns[ID_CATEGORIA]"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[ID_CATEGORIA]" />
+                        <inputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].Columns[IDPRODUTO]"
+                          cachedDataType="i4"
+                          cachedName="IDPRODUTO"
+                          externalMetadataColumnId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].ExternalColumns[IDPRODUTO]"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output].Columns[IDPRODUTO]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].ExternalColumns[PRODUTO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="PRODUTO" />
+                        <externalMetadataColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].ExternalColumns[VALOR_UNITARIO]"
+                          dataType="numeric"
+                          name="VALOR_UNITARIO"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].ExternalColumns[CUSTO_MEDIO]"
+                          dataType="numeric"
+                          name="CUSTO_MEDIO"
+                          precision="10"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].ExternalColumns[ID_CATEGORIA]"
+                          dataType="i4"
+                          name="ID_CATEGORIA" />
+                        <externalMetadataColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input].ExternalColumns[IDPRODUTO]"
+                          dataType="i4"
+                          name="IDPRODUTO" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Popula Stage\Carrega Tabela de STAGE Produto.Paths[OLE DB Source Output]"
+                  endId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Popula Stage\Trunca Tabela STAGE Produto"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{AA6F3413-8FE1-41C9-98C5-1C9869461AE9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Trunca Tabela STAGE Produto"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE ST_PRODUTO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Popula Stage.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F687519B-854B-4094-BFF5-FFA758622770}"
+          DTS:From="Package\Popula Stage\Trunca Tabela STAGE Produto"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Popula Stage\Carrega Tabela de STAGE Produto" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transforma Produto Camel Case"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{4E96B434-34F6-4C8E-AC1D-A8914AFC08CE}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transforma Produto Camel Case">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Transforma Produto Camel Case\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{57928ED7-5B5A-49B9-B590-13663023691F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}"
+              SQLTask:SqlStatementSource="EXEC CAMEL_CASE" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C84D723B-24E2-4E4A-9191-1AAFDBBBE03D}"
+      DTS:From="Package\Popula Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Transforma Produto Camel Case" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{ED1DAC5E-2758-49D9-BC2F-9776CB3FCAC8}"
+      DTS:From="Package\Transforma Produto Camel Case"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Carga DW" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="240,41.6"
+          Id="Package\Popula Stage\Carrega Tabela de STAGE Produto"
+          TopLeft="5.50000000000001,107.1" />
+        <NodeLayout
+          Size="220.8,41.6"
+          Id="Package\Popula Stage\Trunca Tabela STAGE Produto"
+          TopLeft="15.1,5.50000000000007" />
+        <EdgeLayout
+          Id="Package\Popula Stage.PrecedenceConstraints[Constraint]"
+          TopLeft="125.5,47.1000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="251.2,204"
+          Size="251.2,247.2"
+          Id="Package\Popula Stage"
+          TopLeft="5.50000000000006,5.50000000000003" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Transforma Produto Camel Case\Execute SQL Task"
+          TopLeft="5.5,5.49999999999995" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="173.6,102.4"
+          Size="173.6,145.6"
+          Id="Package\Transforma Produto Camel Case"
+          TopLeft="44.3000000000001,312.7" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="131.1,252.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="207.2,41.6"
+          Id="Package\Carga DW\Carrega tabela DW Produto"
+          TopLeft="17.5000002043588,18.3529458095458" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="233.6,115.2"
+          Size="233.6,158.4"
+          Id="Package\Carga DW"
+          TopLeft="28.7000000000001,518.3" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="131.1,458.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.4,60"
+              Start="0,0"
+              End="14.4,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="10.4,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.4,30"
+                    Point2="14.4,30"
+                    Point3="14.4,34" />
+                  <mssgle:LineSegment
+                    End="14.4,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Popula Stage\Carrega Tabela de STAGE Produto">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO"
+          TopLeft="5.50000000000001,107.1" />
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO"
+          TopLeft="8.70000000000002,5.49999999999995" />
+        <EdgeLayout
+          Id="Package\Popula Stage\Carrega Tabela de STAGE Produto.Paths[OLE DB Source Output]"
+          TopLeft="104.7,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela OLTP_PRODUTO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Popula Stage\Carrega Tabela de STAGE Produto\Tabela STAGE_PRODUTO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Carga DW\Carrega tabela DW Produto">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180,41.6"
+          Id="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto"
+          TopLeft="140.9,5.49999999999995" />
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension"
+          TopLeft="126.9,107.1" />
+        <EdgeLayout
+          Id="Package\Carga DW\Carrega tabela DW Produto.Paths[OLE DB Source Output]"
+          TopLeft="230.9,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Carga DW\Carrega tabela DW Produto\Derived Column"
+          TopLeft="17.5,208.7" />
+        <EdgeLayout
+          Id="Package\Carga DW\Carrega tabela DW Produto.Paths[Historical Attribute Inserts Output]"
+          TopLeft="197.566666666667,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-103.666666666667,59.9999999999999"
+              Start="0,0"
+              End="-103.666666666667,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2748091603053" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2748091603053"
+                    Point2="0,24.2748091603053"
+                    Point3="-4,24.2748091603053" />
+                  <mssgle:LineSegment
+                    End="-99.6666666666667,24.2748091603053" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-99.6666666666667,24.2748091603053"
+                    Point2="-103.666666666667,24.2748091603053"
+                    Point3="-103.666666666667,28.2748091603053" />
+                  <mssgle:LineSegment
+                    End="-103.666666666667,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-126.889720052083,29.2748091603053,150.1127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Carga DW\Carrega tabela DW Produto\OLE DB Command"
+          TopLeft="5.50000000000003,310.3" />
+        <EdgeLayout
+          Id="Package\Carga DW\Carrega tabela DW Produto.Paths[Derived Column Output]"
+          TopLeft="90.9,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Carga DW\Carrega tabela DW Produto\Union All"
+          TopLeft="170.9,411.9" />
+        <EdgeLayout
+          Id="Package\Carga DW\Carrega tabela DW Produto.Paths[New Output]"
+          TopLeft="264.233333333333,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.6666666666666,263.2"
+              Start="0,0"
+              End="-14.6666666666666,255.7">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,126.695815115553" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,126.695815115553"
+                    Point2="0,130.695815115553"
+                    Point3="-4,130.695815115553" />
+                  <mssgle:LineSegment
+                    End="-10.6666666666666,130.695815115553" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.6666666666666,130.695815115553"
+                    Point2="-14.6666666666666,130.695815115553"
+                    Point3="-14.6666666666666,134.695815115553" />
+                  <mssgle:LineSegment
+                    End="-14.6666666666666,255.7" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-34.4247200520833,135.695815115553,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga DW\Carrega tabela DW Produto.Paths[OLE DB Command Output]"
+          TopLeft="87.9,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="124.333333333333,59.9999999999999"
+              Start="0,0"
+              End="124.333333333333,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5263157894736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5263157894736"
+                    Point2="0,35.5263157894736"
+                    Point3="4,35.5263157894736" />
+                  <mssgle:LineSegment
+                    End="120.333333333333,35.5263157894736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="120.333333333333,35.5263157894736"
+                    Point2="124.333333333333,35.5263157894736"
+                    Point3="124.333333333333,39.5263157894736" />
+                  <mssgle:LineSegment
+                    End="124.333333333333,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Carga DW\Carrega tabela DW Produto\Derived Column 1"
+          TopLeft="149.7,513.5" />
+        <EdgeLayout
+          Id="Package\Carga DW\Carrega tabela DW Produto.Paths[Union All Output 1]"
+          TopLeft="230.9,453.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto"
+          TopLeft="149.7,615.099999999999" />
+        <EdgeLayout
+          Id="Package\Carga DW\Carrega tabela DW Produto.Paths[Derived Column Output1]"
+          TopLeft="232.9,555.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga DW\Carrega tabela DW Produto\Tabela Stage Produto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga DW\Carrega tabela DW Produto\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{73CEFA2D-8306-42AB-A207-EBE6FCDDD68B}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[DW].[DIM_PRODUTO]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[CUSTO_MEDIO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CUSTO_MEDIO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[ID_CATEGORIA]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;IDCATEGORIA&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[IDPRODUTO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;IDPRODUTO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[PRODUTO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;NOME&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Produto.Outputs[OLE DB Source Output].Columns[VALOR_UNITARIO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;VALOR_UNITARIO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;true&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;true&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn&gt;INICIO&lt;/StartDateColumn&gt;
+  &lt;EndDateColumn&gt;FIM&lt;/EndDateColumn&gt;
+  &lt;DateVariable&gt;System::StartTime&lt;/DateVariable&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga DW\Carrega tabela DW Produto\Tabela DW Produto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

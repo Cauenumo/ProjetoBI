@@ -1,40 +1,40 @@
 <?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="1/25/2020 10:16:33 AM"
+  DTS:CreationDate="1/9/2020 9:39:18 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="CASAPC"
   DTS:CreatorName="CASAPC\cauen"
-  DTS:DTSID="{99741352-8CFE-4832-9AC7-5DFB4122E5F4}"
+  DTS:DTSID="{9E388934-D098-49BD-B127-6CC914C6F6A0}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="13.0.2165.0"
   DTS:LocaleID="1046"
-  DTS:ObjectName="StageCargaCategoria"
+  DTS:ObjectName="CargaNota"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{B78DC652-F119-4642-9028-79B693B79F10}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{21821788-267C-4F3D-82F5-539F14A6B339}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\CARGA CATEGORIA DW"
+      DTS:refId="Package\Carga DW Nota"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{869DDA6D-5096-45B9-A313-454BE49E500A}"
+      DTS:DTSID="{C1285223-3C5A-463E-A5AC-D45691696C50}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="CARGA CATEGORIA DW">
+      DTS:ObjectName="Carga DW Nota">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria"
+          DTS:refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{34b3b707-9883-469d-8787-1a2eec6bceb5}"
+          DTS:DTSID="{B888AFA6-405F-4350-A0AD-39623FB4EEA3}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Carrega Tabela de STAGE Categoria"
+          DTS:ObjectName="Caqrga Tabela de DW Nota"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
           <DTS:ObjectData>
@@ -42,11 +42,11 @@
               version="1">
               <components>
                 <component
-                  refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA"
+                  refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
-                  name="Tabela DW_CATEGORIA"
+                  name="Tabela DW Nota"
                   usesDispositions="true"
                   version="4">
                   <properties>
@@ -57,7 +57,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[CATEGORIA]</property>
+                      name="OpenRowset">[DW].[DIM_NOTA]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -99,7 +99,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Connections[OleDbConnection]"
+                      refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Connections[OleDbConnection]"
                       connectionManagerID="{73CEFA2D-8306-42AB-A207-EBE6FCDDD68B}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_DW]"
                       description="The OLE DB runtime connection used to access the database."
@@ -107,60 +107,50 @@
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input]"
+                      refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].Columns[NOME]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="NOME"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]" />
-                        <inputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].Columns[IDCATEGORIA]"
+                          refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Inputs[OLE DB Destination Input].Columns[IDNOTA]"
                           cachedDataType="i4"
-                          cachedName="IDCATEGORIA"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[IDCATEGORIA]"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]" />
+                          cachedName="IDNOTA"
+                          externalMetadataColumnId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Inputs[OLE DB Destination Input].ExternalColumns[IDNOTA]"
+                          lineageId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Output].Columns[IDNOTA]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
-                          codePage="1252"
-                          dataType="str"
-                          length="50"
-                          name="NOME" />
-                        <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[IDCATEGORIA]"
+                          refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Inputs[OLE DB Destination Input].ExternalColumns[IDSK]"
                           dataType="i4"
-                          name="IDCATEGORIA" />
+                          name="IDSK" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Inputs[OLE DB Destination Input].ExternalColumns[IDNOTA]"
+                          dataType="i4"
+                          name="IDNOTA" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Outputs[OLE DB Destination Error Output]"
+                      refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input]">
+                      synchronousInputId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -169,11 +159,11 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA"
+                  refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota"
                   componentClassID="Microsoft.OLEDBSource"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
-                  name="Tabela STAGE_CATEGORIA"
+                  name="Tabela Stage Nota"
                   usesDispositions="true"
                   version="7">
                   <properties>
@@ -184,7 +174,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[ST_CATEGORIA]</property>
+                      name="OpenRowset"></property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -193,9 +183,9 @@
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT CAST(NOME AS VARCHAR(50)) AS NOME, IDCATEGORIA FROM COMERCIO_STAGE.DBO.ST_CATEGORIA
-WHERE IDCATEGORIA NOT IN
-(SELECT IDCATEGORIA FROM COMERCIO_DW.DBO.CATEGORIA)</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM COMERCIO_STAGE.[dbo].[ST_NOTA]
+WHERE IDNOTA NOT IN
+(SELECT IDNOTA FROM COMERCIO_DW.DW.DIM_NOTA)</property>
                     <property
                       dataType="System.String"
                       description="The variable that contains the SQL command to be executed."
@@ -220,7 +210,7 @@ WHERE IDCATEGORIA NOT IN
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Connections[OleDbConnection]"
+                      refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Connections[OleDbConnection]"
                       connectionManagerID="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_STAGE]"
                       description="The OLE DB runtime connection used to access the database."
@@ -228,71 +218,47 @@ WHERE IDCATEGORIA NOT IN
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output]"
+                      refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Output]"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]"
+                          refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Output].Columns[IDNOTA]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[IDCATEGORIA]"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]"
-                          name="IDCATEGORIA"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]"
-                          codePage="1252"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
-                          length="50"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]"
-                          name="NOME"
+                          externalMetadataColumnId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Output].ExternalColumns[IDNOTA]"
+                          lineageId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Output].Columns[IDNOTA]"
+                          name="IDNOTA"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[IDCATEGORIA]"
+                          refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Output].ExternalColumns[IDNOTA]"
                           dataType="i4"
-                          name="IDCATEGORIA" />
-                        <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
-                          codePage="1252"
-                          dataType="str"
-                          length="50"
-                          name="NOME" />
+                          name="IDNOTA" />
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output]"
+                      refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[IDCATEGORIA]"
+                          refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Error Output].Columns[IDNOTA]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[IDCATEGORIA]"
-                          name="IDCATEGORIA" />
+                          lineageId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Error Output].Columns[IDNOTA]"
+                          name="IDNOTA" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[NOME]"
-                          codePage="1252"
-                          dataType="str"
-                          length="50"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[NOME]"
-                          name="NOME" />
-                        <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -303,10 +269,10 @@ WHERE IDCATEGORIA NOT IN
               </components>
               <paths>
                 <path
-                  refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria.Paths[OLE DB Source Output]"
-                  endId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input]"
+                  refId="Package\Carga DW Nota\Caqrga Tabela de DW Nota.Paths[OLE DB Source Output]"
+                  endId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota.Inputs[OLE DB Destination Input]"
                   name="OLE DB Source Output"
-                  startId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output]" />
+                  startId="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota.Outputs[OLE DB Source Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -314,23 +280,23 @@ WHERE IDCATEGORIA NOT IN
       </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\CARGA CATEGORIA STAGE"
+      DTS:refId="Package\Carga Stage Nota"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{C06F1E1C-D75C-40A7-AE72-A0C83B6AC1B0}"
+      DTS:DTSID="{977BDB08-4F77-4DEF-8A63-A115747E47B1}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="CARGA CATEGORIA STAGE">
+      DTS:ObjectName="Carga Stage Nota">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria"
+          DTS:refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{001cacae-665a-4705-af13-d68f676d4c9d}"
+          DTS:DTSID="{2C277078-81B7-4E27-9140-94CB166286D3}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Carrega Tabela de STAGE Categoria"
+          DTS:ObjectName="Carrega Tabela de STAGE NOTA"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
           <DTS:ObjectData>
@@ -338,11 +304,11 @@ WHERE IDCATEGORIA NOT IN
               version="1">
               <components>
                 <component
-                  refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA"
+                  refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA"
                   componentClassID="Microsoft.OLEDBSource"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
-                  name="Tabela OLTP_CATEGORIA"
+                  name="Tabela OLTP_NOTA"
                   usesDispositions="true"
                   version="7">
                   <properties>
@@ -353,7 +319,7 @@ WHERE IDCATEGORIA NOT IN
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[CATEGORIA]</property>
+                      name="OpenRowset">[dbo].[NOTA_FISCAL]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -362,7 +328,7 @@ WHERE IDCATEGORIA NOT IN
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT IDNOTA FROM NOTA_FISCAL</property>
                     <property
                       dataType="System.String"
                       description="The variable that contains the SQL command to be executed."
@@ -379,7 +345,7 @@ WHERE IDCATEGORIA NOT IN
                       dataType="System.Int32"
                       description="Specifies the mode used to access the database."
                       name="AccessMode"
-                      typeConverter="AccessMode">0</property>
+                      typeConverter="AccessMode">2</property>
                     <property
                       dataType="System.String"
                       description="The mappings between the parameters in the SQL command and variables."
@@ -387,7 +353,7 @@ WHERE IDCATEGORIA NOT IN
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Connections[OleDbConnection]"
+                      refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Connections[OleDbConnection]"
                       connectionManagerID="{A3571619-E919-4ECB-A91F-D6ADDD0DA6E0}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_OLTP]"
                       description="The OLE DB runtime connection used to access the database."
@@ -395,71 +361,47 @@ WHERE IDCATEGORIA NOT IN
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output]"
+                      refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Output]"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]"
-                          codePage="1252"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
-                          length="50"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]"
-                          name="NOME"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]"
+                          refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Output].Columns[IDNOTA]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[IDCATEGORIA]"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]"
-                          name="IDCATEGORIA"
+                          externalMetadataColumnId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Output].ExternalColumns[IDNOTA]"
+                          lineageId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Output].Columns[IDNOTA]"
+                          name="IDNOTA"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
-                          codePage="1252"
-                          dataType="str"
-                          length="50"
-                          name="NOME" />
-                        <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[IDCATEGORIA]"
+                          refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Output].ExternalColumns[IDNOTA]"
                           dataType="i4"
-                          name="IDCATEGORIA" />
+                          name="IDNOTA" />
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output]"
+                      refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[IDCATEGORIA]"
+                          refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Error Output].Columns[IDNOTA]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[IDCATEGORIA]"
-                          name="IDCATEGORIA" />
+                          lineageId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Error Output].Columns[IDNOTA]"
+                          name="IDNOTA" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[NOME]"
-                          codePage="1252"
-                          dataType="str"
-                          length="50"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[NOME]"
-                          name="NOME" />
-                        <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -468,11 +410,11 @@ WHERE IDCATEGORIA NOT IN
                   </outputs>
                 </component>
                 <component
-                  refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA"
+                  refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
-                  name="Tabela STAGE_CATEGORIA"
+                  name="Tabela STAGE_NOTA"
                   usesDispositions="true"
                   version="4">
                   <properties>
@@ -483,7 +425,7 @@ WHERE IDCATEGORIA NOT IN
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[ST_CATEGORIA]</property>
+                      name="OpenRowset">[dbo].[ST_NOTA]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -525,7 +467,7 @@ WHERE IDCATEGORIA NOT IN
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Connections[OleDbConnection]"
+                      refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Connections[OleDbConnection]"
                       connectionManagerID="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_STAGE]"
                       description="The OLE DB runtime connection used to access the database."
@@ -533,60 +475,46 @@ WHERE IDCATEGORIA NOT IN
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input]"
+                      refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].Columns[NOME]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="NOME"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]" />
-                        <inputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].Columns[IDCATEGORIA]"
+                          refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Inputs[OLE DB Destination Input].Columns[IDNOTA]"
                           cachedDataType="i4"
-                          cachedName="IDCATEGORIA"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[IDCATEGORIA]"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]" />
+                          cachedName="IDNOTA"
+                          externalMetadataColumnId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Inputs[OLE DB Destination Input].ExternalColumns[IDNOTA]"
+                          lineageId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Output].Columns[IDNOTA]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
-                          codePage="1252"
-                          dataType="str"
-                          length="100"
-                          name="NOME" />
-                        <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[IDCATEGORIA]"
+                          refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Inputs[OLE DB Destination Input].ExternalColumns[IDNOTA]"
                           dataType="i4"
-                          name="IDCATEGORIA" />
+                          name="IDNOTA" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Destination Error Output]"
+                      refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input]">
+                      synchronousInputId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -597,41 +525,41 @@ WHERE IDCATEGORIA NOT IN
               </components>
               <paths>
                 <path
-                  refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria.Paths[OLE DB Source Output]"
-                  endId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input]"
+                  refId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA.Paths[OLE DB Source Output]"
+                  endId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA.Inputs[OLE DB Destination Input]"
                   name="OLE DB Source Output"
-                  startId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output]" />
+                  startId="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA.Outputs[OLE DB Source Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\CARGA CATEGORIA STAGE\Trunca Tabela STAGE Categoria"
+          DTS:refId="Package\Carga Stage Nota\Trunca Tabela STAGE NOTA"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{526ff915-e934-4a81-bdef-6919b707a680}"
+          DTS:DTSID="{699A1C67-7F54-486D-983C-0BE4D5F5CA1E}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Trunca Tabela STAGE Categoria"
+          DTS:ObjectName="Trunca Tabela STAGE NOTA"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}"
-              SQLTask:SqlStatementSource="TRUNCATE TABLE ST_CATEGORIA" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="TRUNCATE TABLE ST_NOTA" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
       <DTS:PrecedenceConstraints>
         <DTS:PrecedenceConstraint
-          DTS:refId="Package\CARGA CATEGORIA STAGE.PrecedenceConstraints[Constraint]"
+          DTS:refId="Package\Carga Stage Nota.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{96155A9A-F14D-4EBD-80D0-2A1DCC44FFD1}"
-          DTS:From="Package\CARGA CATEGORIA STAGE\Trunca Tabela STAGE Categoria"
+          DTS:DTSID="{039101BC-9320-4D94-95BC-9BF7DFC1A00C}"
+          DTS:From="Package\Carga Stage Nota\Trunca Tabela STAGE NOTA"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
-          DTS:To="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria" />
+          DTS:To="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
@@ -639,11 +567,11 @@ WHERE IDCATEGORIA NOT IN
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{7BFA42FE-CB50-4984-8923-20B569A92863}"
-      DTS:From="Package\CARGA CATEGORIA STAGE"
+      DTS:DTSID="{91CE943E-65A3-40BA-86A5-CF9373470B52}"
+      DTS:From="Package\Carga Stage Nota"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\CARGA CATEGORIA DW" />
+      DTS:To="Package\Carga DW Nota" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -658,12 +586,23 @@ WHERE IDCATEGORIA NOT IN
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="228.8,41.6"
-          Id="Package\CARGA CATEGORIA STAGE\Trunca Tabela STAGE Categoria"
+          Size="206.4,41.6"
+          Id="Package\Carga DW Nota\Caqrga Tabela de DW Nota"
+          TopLeft="5.5,5.50000000000007" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="217.6,102.4"
+          Size="217.6,145.6"
+          Id="Package\Carga DW Nota"
+          TopLeft="17.5000000000001,312.7" />
+        <NodeLayout
+          Size="211.2,41.6"
+          Id="Package\Carga Stage Nota\Trunca Tabela STAGE NOTA"
           TopLeft="15.1,5.50000000000007" />
         <EdgeLayout
-          Id="Package\CARGA CATEGORIA STAGE.PrecedenceConstraints[Constraint]"
-          TopLeft="129.5,47.1000000000001">
+          Id="Package\Carga Stage Nota.PrecedenceConstraints[Constraint]"
+          TopLeft="120.7,47.1000000000001">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -684,30 +623,19 @@ WHERE IDCATEGORIA NOT IN
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="248,41.6"
-          Id="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria"
-          TopLeft="5.50000000000003,107.1" />
+          Size="230.4,41.6"
+          Id="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA"
+          TopLeft="5.50000000000001,107.1" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="259.2,204"
-          Size="259.2,247.2"
-          Id="Package\CARGA CATEGORIA STAGE"
+          PanelSize="241.6,204"
+          Size="241.6,247.2"
+          Id="Package\Carga Stage Nota"
           TopLeft="5.50000000000003,5.50000000000003" />
-        <NodeLayout
-          Size="248,41.6"
-          Id="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria"
-          TopLeft="5.5,5.50000000000007" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="259.2,102.4"
-          Size="259.2,145.6"
-          Id="Package\CARGA CATEGORIA DW"
-          TopLeft="5.50000000000009,312.7" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="135.1,252.7">
+          TopLeft="126.3,252.7">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -731,21 +659,21 @@ WHERE IDCATEGORIA NOT IN
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria">
+    design-time-name="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="207.2,41.6"
-          Id="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA"
+          Size="171.2,41.6"
+          Id="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA"
+          TopLeft="8.70000000000002,5.49999999999995" />
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA"
           TopLeft="5.50000000000001,107.1" />
-        <NodeLayout
-          Size="200.8,41.6"
-          Id="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA"
-          TopLeft="9.10000000000001,5.49999999999995" />
         <EdgeLayout
-          Id="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria.Paths[OLE DB Source Output]"
-          TopLeft="109.3,47.1">
+          Id="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA.Paths[OLE DB Source Output]"
+          TopLeft="94.3,47.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -762,16 +690,14 @@ WHERE IDCATEGORIA NOT IN
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA">
+    design-time-name="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela OLTP_NOTA">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -784,7 +710,7 @@ WHERE IDCATEGORIA NOT IN
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA">
+    design-time-name="Package\Carga Stage Nota\Carrega Tabela de STAGE NOTA\Tabela STAGE_NOTA">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -797,32 +723,32 @@ WHERE IDCATEGORIA NOT IN
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria">
+    design-time-name="Package\Carga DW Nota\Caqrga Tabela de DW Nota">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="207.2,41.6"
-          Id="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA"
-          TopLeft="5.50000000000001,5.50000000000007" />
+          Size="164.8,41.6"
+          Id="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota"
+          TopLeft="5.50000000000001,5.49999999999995" />
         <NodeLayout
-          Size="192.8,41.6"
-          Id="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA"
-          TopLeft="12.7,107.1" />
+          Size="155.2,41.6"
+          Id="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota"
+          TopLeft="10.3,107.1" />
         <EdgeLayout
-          Id="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria.Paths[OLE DB Source Output]"
-          TopLeft="109.1,47.1000000000001">
+          Id="Package\Carga DW Nota\Caqrga Tabela de DW Nota.Paths[OLE DB Source Output]"
+          TopLeft="87.9,47.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,59.9999999999999"
               Start="0,0"
-              End="0,52.5">
+              End="0,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -835,20 +761,15 @@ WHERE IDCATEGORIA NOT IN
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA">
+    design-time-name="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela Stage Nota">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA">
+    design-time-name="Package\Carga DW Nota\Caqrga Tabela de DW Nota\Tabela DW Nota">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

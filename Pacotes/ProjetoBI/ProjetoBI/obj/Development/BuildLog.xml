@@ -2,7 +2,7 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>PROJ_ETL</Name>
-    <LastWriteTime>2020-01-25T14:02:08.1291576Z</LastWriteTime>
+    <LastWriteTime>2020-02-08T19:01:01.5488209Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
@@ -12,43 +12,48 @@
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>StageCargaCliente.dtsx</Name>
-      <LastWriteTime>2020-01-25T13:07:37.4277875Z</LastWriteTime>
+      <Name>CargaCategoria.dtsx</Name>
+      <LastWriteTime>2020-02-08T17:33:12.7405281Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>StageCargaVendedor.dtsx</Name>
-      <LastWriteTime>2020-01-25T13:15:54.0608821Z</LastWriteTime>
+      <Name>CargaFornecedor.dtsx</Name>
+      <LastWriteTime>2020-02-08T17:41:49.6330961Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>StageCargaCategoria.dtsx</Name>
-      <LastWriteTime>2020-01-25T13:19:47.697995Z</LastWriteTime>
+      <Name>CargaProduto.dtsx</Name>
+      <LastWriteTime>2020-02-08T17:56:45.3781215Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>StageCargaProduto.dtsx</Name>
-      <LastWriteTime>2020-01-25T13:52:37.3503219Z</LastWriteTime>
+      <Name>CargaCliente.dtsx</Name>
+      <LastWriteTime>2020-02-08T18:02:25.6556095Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>StageCargaFormaPagamento.dtsx</Name>
-      <LastWriteTime>2020-01-25T13:57:38.9647193Z</LastWriteTime>
+      <Name>CargaFormaPagamento.dtsx</Name>
+      <LastWriteTime>2020-02-08T18:07:21.806475Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>StageCargaFornecedor.dtsx</Name>
-      <LastWriteTime>2020-01-25T13:57:38.9347347Z</LastWriteTime>
+      <Name>CargaVendedor.dtsx</Name>
+      <LastWriteTime>2020-02-08T18:13:42.2135637Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>StageCargaNota.dtsx</Name>
-      <LastWriteTime>2020-01-25T14:02:03.0612925Z</LastWriteTime>
+      <Name>CargaNota.dtsx</Name>
+      <LastWriteTime>2020-02-08T18:18:26.6288031Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>StageCargaFato.dtsx</Name>
-      <LastWriteTime>2020-01-26T00:11:27.0551388Z</LastWriteTime>
+      <Name>CargaFato.dtsx</Name>
+      <LastWriteTime>2020-02-08T19:08:52.3511423Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Job.dtsx</Name>
+      <LastWriteTime>2020-02-08T19:03:39.8217591Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

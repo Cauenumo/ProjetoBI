@@ -1,40 +1,40 @@
 <?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="1/25/2020 10:16:33 AM"
+  DTS:CreationDate="1/25/2020 10:02:31 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="CASAPC"
   DTS:CreatorName="CASAPC\cauen"
-  DTS:DTSID="{99741352-8CFE-4832-9AC7-5DFB4122E5F4}"
+  DTS:DTSID="{C4DE1C2B-EFCC-4382-9486-0BBC46E371CA}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="13.0.2165.0"
   DTS:LocaleID="1046"
-  DTS:ObjectName="StageCargaCategoria"
+  DTS:ObjectName="CargaFormaPagamento"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{B78DC652-F119-4642-9028-79B693B79F10}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{67E3BBF7-6818-4D1E-92B1-359B48D448B3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\CARGA CATEGORIA DW"
+      DTS:refId="Package\Carga DW Forma"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{869DDA6D-5096-45B9-A313-454BE49E500A}"
+      DTS:DTSID="{7B0DE807-7DFE-437F-919E-0D2A2555D33C}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="CARGA CATEGORIA DW">
+      DTS:ObjectName="Carga DW Forma">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria"
+          DTS:refId="Package\Carga DW Forma\Data Flow Task"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{34b3b707-9883-469d-8787-1a2eec6bceb5}"
+          DTS:DTSID="{564DDD37-7D55-4CC2-927B-534C5312BB3E}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Carrega Tabela de STAGE Categoria"
+          DTS:ObjectName="Data Flow Task"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
           <DTS:ObjectData>
@@ -42,11 +42,11 @@
               version="1">
               <components>
                 <component
-                  refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA"
+                  refId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
-                  name="Tabela DW_CATEGORIA"
+                  name="Tabela DW Forma Pagamento"
                   usesDispositions="true"
                   version="4">
                   <properties>
@@ -57,7 +57,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[CATEGORIA]</property>
+                      name="OpenRowset">[DW].[DIM_FORMA]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -99,7 +99,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Connections[OleDbConnection]"
+                      refId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Connections[OleDbConnection]"
                       connectionManagerID="{73CEFA2D-8306-42AB-A207-EBE6FCDDD68B}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_DW]"
                       description="The OLE DB runtime connection used to access the database."
@@ -107,60 +107,64 @@
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input]"
+                      refId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].Columns[NOME]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Inputs[OLE DB Destination Input].Columns[IDFORMA]"
+                          cachedDataType="i4"
+                          cachedName="IDFORMA"
+                          externalMetadataColumnId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Inputs[OLE DB Destination Input].ExternalColumns[IDFORMA]"
+                          lineageId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output].Columns[IDFORMA]" />
+                        <inputColumn
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Inputs[OLE DB Destination Input].Columns[FORMA]"
                           cachedCodepage="1252"
                           cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="NOME"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]" />
-                        <inputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].Columns[IDCATEGORIA]"
-                          cachedDataType="i4"
-                          cachedName="IDCATEGORIA"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[IDCATEGORIA]"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]" />
+                          cachedLength="30"
+                          cachedName="FORMA"
+                          externalMetadataColumnId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Inputs[OLE DB Destination Input].ExternalColumns[FORMA]"
+                          lineageId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output].Columns[FORMA]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Inputs[OLE DB Destination Input].ExternalColumns[IDSK]"
+                          dataType="i4"
+                          name="IDSK" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Inputs[OLE DB Destination Input].ExternalColumns[IDFORMA]"
+                          dataType="i4"
+                          name="IDFORMA" />
+                        <externalMetadataColumn
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Inputs[OLE DB Destination Input].ExternalColumns[FORMA]"
                           codePage="1252"
                           dataType="str"
-                          length="50"
-                          name="NOME" />
-                        <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[IDCATEGORIA]"
-                          dataType="i4"
-                          name="IDCATEGORIA" />
+                          length="30"
+                          name="FORMA" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Outputs[OLE DB Destination Error Output]"
+                      refId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input]">
+                      synchronousInputId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -169,11 +173,11 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA"
+                  refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento"
                   componentClassID="Microsoft.OLEDBSource"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
-                  name="Tabela STAGE_CATEGORIA"
+                  name="Tabela Stage Forma Pagamento"
                   usesDispositions="true"
                   version="7">
                   <properties>
@@ -184,7 +188,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[ST_CATEGORIA]</property>
+                      name="OpenRowset"></property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -193,9 +197,9 @@
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT CAST(NOME AS VARCHAR(50)) AS NOME, IDCATEGORIA FROM COMERCIO_STAGE.DBO.ST_CATEGORIA
-WHERE IDCATEGORIA NOT IN
-(SELECT IDCATEGORIA FROM COMERCIO_DW.DBO.CATEGORIA)</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT IDFORMA, CAST(FORMA AS VARCHAR(30)) AS FORMA FROM COMERCIO_STAGE.DBO.ST_FORMA
+WHERE IDFORMA NOT IN
+(SELECT IDFORMA FROM COMERCIO_DW.[DW].[DIM_FORMA])</property>
                     <property
                       dataType="System.String"
                       description="The variable that contains the SQL command to be executed."
@@ -220,7 +224,7 @@ WHERE IDCATEGORIA NOT IN
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Connections[OleDbConnection]"
+                      refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Connections[OleDbConnection]"
                       connectionManagerID="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_STAGE]"
                       description="The OLE DB runtime connection used to access the database."
@@ -228,71 +232,71 @@ WHERE IDCATEGORIA NOT IN
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output]"
+                      refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output]"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output].Columns[IDFORMA]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[IDCATEGORIA]"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]"
-                          name="IDCATEGORIA"
+                          externalMetadataColumnId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output].ExternalColumns[IDFORMA]"
+                          lineageId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output].Columns[IDFORMA]"
+                          name="IDFORMA"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output].Columns[FORMA]"
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
-                          length="50"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]"
-                          name="NOME"
+                          externalMetadataColumnId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output].ExternalColumns[FORMA]"
+                          length="30"
+                          lineageId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output].Columns[FORMA]"
+                          name="FORMA"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[IDCATEGORIA]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output].ExternalColumns[IDFORMA]"
                           dataType="i4"
-                          name="IDCATEGORIA" />
+                          name="IDFORMA" />
                         <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output].ExternalColumns[FORMA]"
                           codePage="1252"
                           dataType="str"
-                          length="50"
-                          name="NOME" />
+                          length="30"
+                          name="FORMA" />
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output]"
+                      refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[IDCATEGORIA]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Error Output].Columns[IDFORMA]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[IDCATEGORIA]"
-                          name="IDCATEGORIA" />
+                          lineageId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Error Output].Columns[IDFORMA]"
+                          name="IDFORMA" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[NOME]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Error Output].Columns[FORMA]"
                           codePage="1252"
                           dataType="str"
-                          length="50"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[NOME]"
-                          name="NOME" />
+                          length="30"
+                          lineageId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Error Output].Columns[FORMA]"
+                          name="FORMA" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -303,10 +307,10 @@ WHERE IDCATEGORIA NOT IN
               </components>
               <paths>
                 <path
-                  refId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria.Paths[OLE DB Source Output]"
-                  endId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA.Inputs[OLE DB Destination Input]"
+                  refId="Package\Carga DW Forma\Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento.Inputs[OLE DB Destination Input]"
                   name="OLE DB Source Output"
-                  startId="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Source Output]" />
+                  startId="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento.Outputs[OLE DB Source Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -314,23 +318,23 @@ WHERE IDCATEGORIA NOT IN
       </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\CARGA CATEGORIA STAGE"
+      DTS:refId="Package\Carga Stage Forma"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{C06F1E1C-D75C-40A7-AE72-A0C83B6AC1B0}"
+      DTS:DTSID="{ADFC3B6E-CD30-46EE-98C7-1A4E1D8A8C0E}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="CARGA CATEGORIA STAGE">
+      DTS:ObjectName="Carga Stage Forma">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria"
+          DTS:refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{001cacae-665a-4705-af13-d68f676d4c9d}"
+          DTS:DTSID="{58EDFACB-A120-4001-B71B-3CC96974B315}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Carrega Tabela de STAGE Categoria"
+          DTS:ObjectName="Carrega Tabela de STAGE FORMA_PAGAMENTO"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
           <DTS:ObjectData>
@@ -338,11 +342,11 @@ WHERE IDCATEGORIA NOT IN
               version="1">
               <components>
                 <component
-                  refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA"
+                  refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO"
                   componentClassID="Microsoft.OLEDBSource"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
-                  name="Tabela OLTP_CATEGORIA"
+                  name="Tabela OLTP_FORMA_PAGAMENTO"
                   usesDispositions="true"
                   version="7">
                   <properties>
@@ -353,7 +357,7 @@ WHERE IDCATEGORIA NOT IN
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[CATEGORIA]</property>
+                      name="OpenRowset">[dbo].[FORMA_PAGAMENTO]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -362,7 +366,7 @@ WHERE IDCATEGORIA NOT IN
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT IDVENDEDOR, NOME, SEXO, ID_GERENTE FROM VENDEDOR</property>
                     <property
                       dataType="System.String"
                       description="The variable that contains the SQL command to be executed."
@@ -387,7 +391,7 @@ WHERE IDCATEGORIA NOT IN
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Connections[OleDbConnection]"
+                      refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Connections[OleDbConnection]"
                       connectionManagerID="{A3571619-E919-4ECB-A91F-D6ADDD0DA6E0}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_OLTP]"
                       description="The OLE DB runtime connection used to access the database."
@@ -395,71 +399,71 @@ WHERE IDCATEGORIA NOT IN
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output]"
+                      refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output]"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]"
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output].Columns[IDFORMA]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output].ExternalColumns[IDFORMA]"
+                          lineageId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output].Columns[IDFORMA]"
+                          name="IDFORMA"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output].Columns[FORMA]"
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
+                          externalMetadataColumnId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output].ExternalColumns[FORMA]"
                           length="50"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]"
-                          name="NOME"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]"
-                          dataType="i4"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[IDCATEGORIA]"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]"
-                          name="IDCATEGORIA"
+                          lineageId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output].Columns[FORMA]"
+                          name="FORMA"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output].ExternalColumns[IDFORMA]"
+                          dataType="i4"
+                          name="IDFORMA" />
+                        <externalMetadataColumn
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output].ExternalColumns[FORMA]"
                           codePage="1252"
                           dataType="str"
                           length="50"
-                          name="NOME" />
-                        <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[IDCATEGORIA]"
-                          dataType="i4"
-                          name="IDCATEGORIA" />
+                          name="FORMA" />
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output]"
+                      refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[IDCATEGORIA]"
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Error Output].Columns[IDFORMA]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[IDCATEGORIA]"
-                          name="IDCATEGORIA" />
+                          lineageId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Error Output].Columns[IDFORMA]"
+                          name="IDFORMA" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[NOME]"
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Error Output].Columns[FORMA]"
                           codePage="1252"
                           dataType="str"
                           length="50"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[NOME]"
-                          name="NOME" />
+                          lineageId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Error Output].Columns[FORMA]"
+                          name="FORMA" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -468,11 +472,11 @@ WHERE IDCATEGORIA NOT IN
                   </outputs>
                 </component>
                 <component
-                  refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA"
+                  refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
-                  name="Tabela STAGE_CATEGORIA"
+                  name="Tabela STAGE_FORMA_PAGAMENTO"
                   usesDispositions="true"
                   version="4">
                   <properties>
@@ -483,7 +487,7 @@ WHERE IDCATEGORIA NOT IN
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[dbo].[ST_CATEGORIA]</property>
+                      name="OpenRowset">[dbo].[ST_FORMA]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -525,7 +529,7 @@ WHERE IDCATEGORIA NOT IN
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Connections[OleDbConnection]"
+                      refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Connections[OleDbConnection]"
                       connectionManagerID="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_STAGE]"
                       description="The OLE DB runtime connection used to access the database."
@@ -533,60 +537,60 @@ WHERE IDCATEGORIA NOT IN
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input]"
+                      refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].Columns[NOME]"
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Inputs[OLE DB Destination Input].Columns[IDFORMA]"
+                          cachedDataType="i4"
+                          cachedName="IDFORMA"
+                          externalMetadataColumnId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Inputs[OLE DB Destination Input].ExternalColumns[IDFORMA]"
+                          lineageId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output].Columns[IDFORMA]" />
+                        <inputColumn
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Inputs[OLE DB Destination Input].Columns[FORMA]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="50"
-                          cachedName="NOME"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[NOME]" />
-                        <inputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].Columns[IDCATEGORIA]"
-                          cachedDataType="i4"
-                          cachedName="IDCATEGORIA"
-                          externalMetadataColumnId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[IDCATEGORIA]"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output].Columns[IDCATEGORIA]" />
+                          cachedName="FORMA"
+                          externalMetadataColumnId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Inputs[OLE DB Destination Input].ExternalColumns[FORMA]"
+                          lineageId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output].Columns[FORMA]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Inputs[OLE DB Destination Input].ExternalColumns[IDFORMA]"
+                          dataType="i4"
+                          name="IDFORMA" />
+                        <externalMetadataColumn
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Inputs[OLE DB Destination Input].ExternalColumns[FORMA]"
                           codePage="1252"
                           dataType="str"
-                          length="100"
-                          name="NOME" />
-                        <externalMetadataColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input].ExternalColumns[IDCATEGORIA]"
-                          dataType="i4"
-                          name="IDCATEGORIA" />
+                          length="50"
+                          name="FORMA" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Destination Error Output]"
+                      refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input]">
+                      synchronousInputId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -597,41 +601,41 @@ WHERE IDCATEGORIA NOT IN
               </components>
               <paths>
                 <path
-                  refId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria.Paths[OLE DB Source Output]"
-                  endId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA.Inputs[OLE DB Destination Input]"
+                  refId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO.Paths[OLE DB Source Output]"
+                  endId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO.Inputs[OLE DB Destination Input]"
                   name="OLE DB Source Output"
-                  startId="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA.Outputs[OLE DB Source Output]" />
+                  startId="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO.Outputs[OLE DB Source Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\CARGA CATEGORIA STAGE\Trunca Tabela STAGE Categoria"
+          DTS:refId="Package\Carga Stage Forma\Trunca Tabela STAGE FORMA_PAGAMENTO"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{526ff915-e934-4a81-bdef-6919b707a680}"
+          DTS:DTSID="{01B83842-2FC5-40C9-93A8-FBB8303E06B9}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Trunca Tabela STAGE Categoria"
+          DTS:ObjectName="Trunca Tabela STAGE FORMA_PAGAMENTO"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}"
-              SQLTask:SqlStatementSource="TRUNCATE TABLE ST_CATEGORIA" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="TRUNCATE TABLE ST_FORMA" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
       <DTS:PrecedenceConstraints>
         <DTS:PrecedenceConstraint
-          DTS:refId="Package\CARGA CATEGORIA STAGE.PrecedenceConstraints[Constraint]"
+          DTS:refId="Package\Carga Stage Forma.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{96155A9A-F14D-4EBD-80D0-2A1DCC44FFD1}"
-          DTS:From="Package\CARGA CATEGORIA STAGE\Trunca Tabela STAGE Categoria"
+          DTS:DTSID="{AD87D857-868B-4718-9AF5-EAF5F2C681D6}"
+          DTS:From="Package\Carga Stage Forma\Trunca Tabela STAGE FORMA_PAGAMENTO"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
-          DTS:To="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria" />
+          DTS:To="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
@@ -639,11 +643,11 @@ WHERE IDCATEGORIA NOT IN
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{7BFA42FE-CB50-4984-8923-20B569A92863}"
-      DTS:From="Package\CARGA CATEGORIA STAGE"
+      DTS:DTSID="{6C0AC4DF-2B47-436D-8AE1-999661AA744A}"
+      DTS:From="Package\Carga Stage Forma"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\CARGA CATEGORIA DW" />
+      DTS:To="Package\Carga DW Forma" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -658,12 +662,12 @@ WHERE IDCATEGORIA NOT IN
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="228.8,41.6"
-          Id="Package\CARGA CATEGORIA STAGE\Trunca Tabela STAGE Categoria"
+          Size="284.8,41.6"
+          Id="Package\Carga Stage Forma\Trunca Tabela STAGE FORMA_PAGAMENTO"
           TopLeft="15.1,5.50000000000007" />
         <EdgeLayout
-          Id="Package\CARGA CATEGORIA STAGE.PrecedenceConstraints[Constraint]"
-          TopLeft="129.5,47.1000000000001">
+          Id="Package\Carga Stage Forma.PrecedenceConstraints[Constraint]"
+          TopLeft="157.5,47.1000000000001">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -684,30 +688,30 @@ WHERE IDCATEGORIA NOT IN
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="248,41.6"
-          Id="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria"
+          Size="304,41.6"
+          Id="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO"
           TopLeft="5.50000000000003,107.1" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="259.2,204"
-          Size="259.2,247.2"
-          Id="Package\CARGA CATEGORIA STAGE"
+          PanelSize="315.2,204"
+          Size="315.2,247.2"
+          Id="Package\Carga Stage Forma"
           TopLeft="5.50000000000003,5.50000000000003" />
         <NodeLayout
-          Size="248,41.6"
-          Id="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria"
-          TopLeft="5.5,5.50000000000007" />
+          Size="150.4,41.6"
+          Id="Package\Carga DW Forma\Data Flow Task"
+          TopLeft="5.5,5.49999999999995" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="259.2,102.4"
-          Size="259.2,145.6"
-          Id="Package\CARGA CATEGORIA DW"
-          TopLeft="5.50000000000009,312.7" />
+          PanelSize="161.6,102.4"
+          Size="161.6,145.6"
+          Id="Package\Carga DW Forma"
+          TopLeft="82.3000000000001,312.7" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="135.1,252.7">
+          TopLeft="163.1,252.7">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -731,98 +735,32 @@ WHERE IDCATEGORIA NOT IN
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="207.2,41.6"
-          Id="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA"
-          TopLeft="5.50000000000001,107.1" />
-        <NodeLayout
-          Size="200.8,41.6"
-          Id="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA"
-          TopLeft="9.10000000000001,5.49999999999995" />
-        <EdgeLayout
-          Id="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria.Paths[OLE DB Source Output]"
-          TopLeft="109.3,47.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela OLTP_CATEGORIA">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\CARGA CATEGORIA STAGE\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria">
+    design-time-name="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="207.2,41.6"
-          Id="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA"
-          TopLeft="5.50000000000001,5.50000000000007" />
+          Size="244.8,41.6"
+          Id="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO"
+          TopLeft="9.09999999999999,5.50000000000007" />
         <NodeLayout
-          Size="192.8,41.6"
-          Id="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA"
-          TopLeft="12.7,107.1" />
+          Size="252,41.6"
+          Id="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO"
+          TopLeft="5.50000000000003,107.1" />
         <EdgeLayout
-          Id="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria.Paths[OLE DB Source Output]"
-          TopLeft="109.1,47.1000000000001">
+          Id="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO.Paths[OLE DB Source Output]"
+          TopLeft="131.5,47.1000000000001">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,60.0000000000001"
               Start="0,0"
-              End="0,52.5">
+              End="0,52.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -835,7 +773,7 @@ WHERE IDCATEGORIA NOT IN
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela STAGE_CATEGORIA">
+    design-time-name="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela OLTP_FORMA_PAGAMENTO">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -848,7 +786,66 @@ WHERE IDCATEGORIA NOT IN
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CARGA CATEGORIA DW\Carrega Tabela de STAGE Categoria\Tabela DW_CATEGORIA">
+    design-time-name="Package\Carga Stage Forma\Carrega Tabela de STAGE FORMA_PAGAMENTO\Tabela STAGE_FORMA_PAGAMENTO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Carga DW Forma\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="228.8,41.6"
+          Id="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento"
+          TopLeft="5.50000000000001,5.50000000000007" />
+        <NodeLayout
+          Size="219.2,41.6"
+          Id="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento"
+          TopLeft="10.3,107.1" />
+        <EdgeLayout
+          Id="Package\Carga DW Forma\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="119.9,47.1000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga DW Forma\Data Flow Task\Tabela Stage Forma Pagamento">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga DW Forma\Data Flow Task\Tabela DW Forma Pagamento">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
