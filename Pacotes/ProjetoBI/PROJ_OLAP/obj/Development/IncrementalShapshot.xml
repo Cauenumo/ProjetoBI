@@ -26,7 +26,7 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.DataSourceView</Type>
-        <TimeStamp>n5yZeBskS+nRqHMDg2PfNPklbvU=10/02/2020 13:56:0810/02/2020 13:54:47</TimeStamp>
+        <TimeStamp>J88rpTJibK21nN7Lmik+EZGo/M8=10/02/2020 22:49:3210/02/2020 13:54:47</TimeStamp>
         <ID>
           <String>DSV_COMERCIO DW</String>
         </ID>
@@ -66,6 +66,27 @@
           <String>DIM FORMA</String>
         </ID>
       </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>fnLZMM0Xye4/IhycDPw+SO18Hck=10/02/2020 22:04:0610/02/2020 22:03:09</TimeStamp>
+        <ID>
+          <String>DIM PRODUTO</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>Sst8Zsg6d5U8/CZ9lxnZixjDlHI=10/02/2020 22:52:3710/02/2020 22:51:44</TimeStamp>
+        <ID>
+          <String>DIM TEMPO</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>BeQJfppmOF4eYKL7YgOiQiD+SFU=10/02/2020 22:55:1310/02/2020 22:55:123qC8K3nKmuTl1gBOG2WTC54k/5g=10/02/2020 22:55:1310/02/2020 22:55:12</TimeStamp>
+        <ID>
+          <String>Cubo_Vendas</String>
+        </ID>
+      </ObjectSnapshot>
     </ObjectSnapshots>
     <DatabaseSnapshot>
       <Type>Microsoft.AnalysisServices.Database</Type>
@@ -78,5 +99,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2020-02-11T00:04:24.433333Z</LastDeployed>
+  <LastDeployed>2020-02-11T01:55:39.34Z</LastDeployed>
 </DeploymentSnapshot>

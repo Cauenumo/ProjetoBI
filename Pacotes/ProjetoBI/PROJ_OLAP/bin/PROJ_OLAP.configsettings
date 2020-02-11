@@ -27,7 +27,28 @@
       <Dimension>
         <ID>DIM FORMA</ID>
       </Dimension>
+      <Dimension>
+        <ID>DIM PRODUTO</ID>
+      </Dimension>
+      <Dimension>
+        <ID>DIM TEMPO</ID>
+      </Dimension>
     </Dimensions>
+    <Cubes>
+      <Cube>
+        <ID>Cubo_Vendas</ID>
+        <MeasureGroups>
+          <MeasureGroup>
+            <ID>FATO</ID>
+            <Partitions>
+              <Partition>
+                <ID>FATO</ID>
+              </Partition>
+            </Partitions>
+          </MeasureGroup>
+        </MeasureGroups>
+      </Cube>
+    </Cubes>
     <DataSourceImpersonationInfo>
       <ImpersonationMode xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">Default</ImpersonationMode>
       <ImpersonationInfoSecurity xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">Unchanged</ImpersonationInfoSecurity>

@@ -6,6 +6,18 @@
     <Name>PROJ_OLAP.database</Name>
     <FullPath>PROJ_OLAP.database</FullPath>
   </Database>
+  <Cubes>
+    <ProjectItem>
+      <Name>Cubo_Vendas.cube</Name>
+      <FullPath>Cubo_Vendas.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cubo_Vendas.partitions</Name>
+          <FullPath>Cubo_Vendas.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+  </Cubes>
   <Dimensions>
     <ProjectItem>
       <Name>DIM CLIENTE.dim</Name>
@@ -26,6 +38,14 @@
     <ProjectItem>
       <Name>DIM FORMA.dim</Name>
       <FullPath>DIM FORMA.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>DIM PRODUTO.dim</Name>
+      <FullPath>DIM PRODUTO.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>DIM TEMPO.dim</Name>
+      <FullPath>DIM TEMPO.dim</FullPath>
     </ProjectItem>
   </Dimensions>
   <DataSources>
