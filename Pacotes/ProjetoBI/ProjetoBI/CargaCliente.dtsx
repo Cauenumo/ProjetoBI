@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="CargaCliente"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{F03A584B-4A08-4C40-8E85-26571B9BAB74}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{D6D5C0BC-FB22-42D9-9D90-7BE8808A2588}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -28,13 +28,13 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Carga DW Cliente\Data Flow Task"
+          DTS:refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{82EC9033-C89F-4108-995E-07AFA6C8BA02}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Data Flow Task"
+          DTS:ObjectName="Carrega Tabela de DW Clientes"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
           <DTS:ObjectData>
@@ -42,7 +42,86 @@
               version="1">
               <components>
                 <component
-                  refId="Package\Carga DW Cliente\Data Flow Task\Derived Column"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Converte Email"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Inputs[Data Conversion Input].Columns[EMAIL]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="EMAIL"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[EMAIL]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Outputs[Data Conversion Output].Columns[DC_EMAIL]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Outputs[Data Conversion Output].Columns[DC_EMAIL]"
+                          name="DC_EMAIL"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[EMAIL]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column"
                   componentClassID="Microsoft.DerivedColumn"
                   contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -50,7 +129,7 @@
                   usesDispositions="true">
                   <inputs>
                     <input
-                      refId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Inputs[Derived Column Input]"
                       description="Input to the Derived Column Transformation"
                       name="Derived Column Input">
                       <externalMetadataColumns />
@@ -58,19 +137,19 @@
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Outputs[Derived Column Output]"
                       description="Default Output of the Derived Column Transformation"
                       exclusionGroup="1"
                       name="Derived Column Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Inputs[Derived Column Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[FIM]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Outputs[Derived Column Output].Columns[FIM]"
                           dataType="dbTimeStamp"
                           description="FIM"
                           errorOrTruncationOperation="Computation"
                           errorRowDisposition="FailComponent"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[FIM]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Outputs[Derived Column Output].Columns[FIM]"
                           name="FIM"
                           truncationRowDisposition="FailComponent">
                           <properties>
@@ -91,23 +170,23 @@
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Outputs[Derived Column Error Output]"
                       description="Error Output of the Derived Column Transformation"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="Derived Column Error Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Inputs[Derived Column Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -116,7 +195,7 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1"
                   componentClassID="Microsoft.DerivedColumn"
                   contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -124,7 +203,7 @@
                   usesDispositions="true">
                   <inputs>
                     <input
-                      refId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Inputs[Derived Column Input]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Inputs[Derived Column Input]"
                       description="Input to the Derived Column Transformation"
                       name="Derived Column Input">
                       <externalMetadataColumns />
@@ -132,19 +211,19 @@
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Outputs[Derived Column Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Outputs[Derived Column Output]"
                       description="Default Output of the Derived Column Transformation"
                       exclusionGroup="1"
                       name="Derived Column Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Inputs[Derived Column Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Inputs[Derived Column Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[INICIO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Outputs[Derived Column Output].Columns[INICIO]"
                           dataType="dbTimeStamp"
                           description="INICIO"
                           errorOrTruncationOperation="Computation"
                           errorRowDisposition="FailComponent"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[INICIO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Outputs[Derived Column Output].Columns[INICIO]"
                           name="INICIO"
                           truncationRowDisposition="FailComponent">
                           <properties>
@@ -165,23 +244,23 @@
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Outputs[Derived Column Error Output]"
                       description="Error Output of the Derived Column Transformation"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="Derived Column Error Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Inputs[Derived Column Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Inputs[Derived Column Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -190,7 +269,7 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
@@ -227,7 +306,7 @@
                       dataType="System.Int32"
                       description="Specifies the mode used to access the database."
                       name="AccessMode"
-                      typeConverter="AccessMode">0</property>
+                      typeConverter="AccessMode">3</property>
                     <property
                       dataType="System.Boolean"
                       description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -239,7 +318,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                      name="FastLoadOptions"></property>
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -247,7 +326,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Connections[OleDbConnection]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Connections[OleDbConnection]"
                       connectionManagerID="{73CEFA2D-8306-42AB-A207-EBE6FCDDD68B}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_DW]"
                       description="The OLE DB runtime connection used to access the database."
@@ -255,133 +334,133 @@
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].Columns[IDCLIENTE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].Columns[IDCLIENTE]"
                           cachedDataType="i4"
                           cachedName="IDCLIENTE"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDCLIENTE]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[IDCLIENTE]" />
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDCLIENTE]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[IDCLIENTE]" />
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].Columns[INICIO]"
-                          cachedDataType="dbTimeStamp"
-                          cachedName="INICIO"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[INICIO]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[INICIO]" />
-                        <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].Columns[NOME]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].Columns[NOME]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="100"
                           cachedName="NOME"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[NOME]" />
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[NOME]" />
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].Columns[SEXO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].Columns[SEXO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="SEXO"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SEXO]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[SEXO]" />
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SEXO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[SEXO]" />
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].Columns[EMAIL]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="100"
-                          cachedName="EMAIL"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EMAIL]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[EMAIL]" />
-                        <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].Columns[NASCIMENTO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].Columns[NASCIMENTO]"
                           cachedDataType="dbDate"
                           cachedName="NASCIMENTO"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NASCIMENTO]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[NASCIMENTO]" />
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NASCIMENTO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[NASCIMENTO]" />
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].Columns[CIDADE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].Columns[CIDADE]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="100"
                           cachedName="CIDADE"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CIDADE]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[CIDADE]" />
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CIDADE]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[CIDADE]" />
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].Columns[ESTADO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].Columns[ESTADO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="ESTADO"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ESTADO]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ESTADO]" />
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ESTADO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[ESTADO]" />
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].Columns[REGIAO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].Columns[REGIAO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="REGIAO"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[REGIAO]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[REGIAO]" />
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[REGIAO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[REGIAO]" />
+                        <inputColumn
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].Columns[INICIO]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="INICIO"
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[INICIO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Outputs[Derived Column Output].Columns[INICIO]" />
+                        <inputColumn
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].Columns[DC_EMAIL]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="DC_EMAIL"
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EMAIL]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Outputs[Data Conversion Output].Columns[DC_EMAIL]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDSK]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDSK]"
                           dataType="i4"
                           name="IDSK" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDCLIENTE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDCLIENTE]"
                           dataType="i4"
                           name="IDCLIENTE" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[INICIO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[INICIO]"
                           dataType="dbTimeStamp"
                           name="INICIO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FIM]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FIM]"
                           dataType="dbTimeStamp"
                           name="FIM" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOME]"
                           codePage="1252"
                           dataType="str"
                           length="100"
                           name="NOME" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SEXO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SEXO]"
                           codePage="1252"
                           dataType="str"
                           length="20"
                           name="SEXO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EMAIL]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EMAIL]"
                           codePage="1252"
                           dataType="str"
                           length="50"
                           name="EMAIL" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NASCIMENTO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NASCIMENTO]"
                           dataType="dbDate"
                           name="NASCIMENTO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CIDADE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CIDADE]"
                           codePage="1252"
                           dataType="str"
                           length="100"
                           name="CIDADE" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ESTADO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ESTADO]"
                           codePage="1252"
                           dataType="str"
                           length="30"
                           name="ESTADO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[REGIAO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[REGIAO]"
                           codePage="1252"
                           dataType="str"
                           length="30"
@@ -391,22 +470,22 @@
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -415,7 +494,7 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command"
                   componentClassID="Microsoft.OLEDBCommand"
                   contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
                   description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
@@ -440,7 +519,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Connections[OleDbConnection]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Connections[OleDbConnection]"
                       connectionManagerID="{73CEFA2D-8306-42AB-A207-EBE6FCDDD68B}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_DW]"
                       description="The OLE DB runtime connection used to access the database."
@@ -448,29 +527,29 @@
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Inputs[OLE DB Command Input]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Inputs[OLE DB Command Input]"
                       errorOrTruncationOperation="Command Execution"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
                       name="OLE DB Command Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Inputs[OLE DB Command Input].Columns[IDCLIENTE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Inputs[OLE DB Command Input].Columns[IDCLIENTE]"
                           cachedDataType="i4"
                           cachedName="IDCLIENTE"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]" />
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]" />
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Inputs[OLE DB Command Input].Columns[FIM]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Inputs[OLE DB Command Input].Columns[FIM]"
                           cachedDataType="dbTimeStamp"
                           cachedName="FIM"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[FIM]" />
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Outputs[Derived Column Output].Columns[FIM]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                           dataType="dbTimeStamp"
                           name="Param_0">
                           <properties>
@@ -481,7 +560,7 @@
                           </properties>
                         </externalMetadataColumn>
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
                           dataType="i4"
                           name="Param_1">
                           <properties>
@@ -496,29 +575,29 @@
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Outputs[OLE DB Command Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Outputs[OLE DB Command Output]"
                       exclusionGroup="1"
                       name="OLE DB Command Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Inputs[OLE DB Command Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Inputs[OLE DB Command Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Outputs[OLE DB Command Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Command Error Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Inputs[OLE DB Command Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Inputs[OLE DB Command Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -527,7 +606,7 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension"
                   componentClassID="Microsoft.SCD"
                   contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
                   description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
@@ -575,7 +654,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Connections[LookupConnection]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Connections[LookupConnection]"
                       connectionManagerID="{73CEFA2D-8306-42AB-A207-EBE6FCDDD68B}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_DW]"
                       description="Defines the connection to use for lookups in the dimension table"
@@ -583,17 +662,17 @@
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
                       name="Slowly Changing Dimension Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[CIDADE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[CIDADE]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="100"
                           cachedName="CIDADE"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CIDADE]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]">
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CIDADE]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]">
                           <properties>
                             <property
                               dataType="System.Int32"
@@ -602,13 +681,13 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[EMAIL]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[EMAIL]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="50"
                           cachedName="EMAIL"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[EMAIL]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]">
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[EMAIL]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]">
                           <properties>
                             <property
                               dataType="System.Int32"
@@ -617,13 +696,13 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[ESTADO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[ESTADO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="ESTADO"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[ESTADO]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]">
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[ESTADO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]">
                           <properties>
                             <property
                               dataType="System.Int32"
@@ -632,11 +711,11 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[IDCLIENTE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[IDCLIENTE]"
                           cachedDataType="i4"
                           cachedName="IDCLIENTE"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[IDCLIENTE]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]">
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[IDCLIENTE]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]">
                           <properties>
                             <property
                               dataType="System.Int32"
@@ -645,11 +724,11 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[NASCIMENTO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[NASCIMENTO]"
                           cachedDataType="dbDate"
                           cachedName="NASCIMENTO"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NASCIMENTO]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]">
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NASCIMENTO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]">
                           <properties>
                             <property
                               dataType="System.Int32"
@@ -658,13 +737,13 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[NOME]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[NOME]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="100"
                           cachedName="NOME"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NOME]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]">
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NOME]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]">
                           <properties>
                             <property
                               dataType="System.Int32"
@@ -673,13 +752,13 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[REGIAO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[REGIAO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="REGIAO"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[REGIAO]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]">
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[REGIAO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]">
                           <properties>
                             <property
                               dataType="System.Int32"
@@ -688,13 +767,13 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[SEXO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[SEXO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="SEXO"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SEXO]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]">
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SEXO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]">
                           <properties>
                             <property
                               dataType="System.Int32"
@@ -706,55 +785,55 @@
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CIDADE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CIDADE]"
                           codePage="1252"
                           dataType="str"
                           length="100"
                           name="CIDADE" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[EMAIL]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[EMAIL]"
                           codePage="1252"
                           dataType="str"
                           length="50"
                           name="EMAIL" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[ESTADO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[ESTADO]"
                           codePage="1252"
                           dataType="str"
                           length="30"
                           name="ESTADO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[IDCLIENTE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[IDCLIENTE]"
                           dataType="i4"
                           name="IDCLIENTE" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NASCIMENTO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NASCIMENTO]"
                           dataType="dbDate"
                           name="NASCIMENTO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NOME]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NOME]"
                           codePage="1252"
                           dataType="str"
                           length="100"
                           name="NOME" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[REGIAO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[REGIAO]"
                           codePage="1252"
                           dataType="str"
                           length="30"
                           name="REGIAO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SEXO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SEXO]"
                           codePage="1252"
                           dataType="str"
                           length="20"
                           name="SEXO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[INICIO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[INICIO]"
                           dataType="dbTimeStamp"
                           name="INICIO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[FIM]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[FIM]"
                           dataType="dbTimeStamp"
                           name="FIM" />
                       </externalMetadataColumns>
@@ -762,57 +841,57 @@
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Outputs[Unchanged Output]"
                       description="Unchanged rows"
                       exclusionGroup="1"
                       name="Unchanged Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Outputs[New Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Outputs[New Output]"
                       description="New rows"
                       exclusionGroup="1"
                       name="New Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
                       description="Rows with changes in columns tagged FixedAttribute"
                       exclusionGroup="1"
                       name="Fixed Attribute Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
                       description="These rows contain new information for ChangingAttribute (Type 1) column changes"
                       exclusionGroup="1"
                       name="Changing Attribute Updates Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
                       description="HistoricalAttribute (Type 2) changes result in these new rows"
                       exclusionGroup="2"
                       name="Historical Attribute Inserts Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
                       description="Information to update unpopulated initial dimension row"
                       exclusionGroup="1"
                       name="Inferred Member Updates Output"
-                      synchronousInputId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                      synchronousInputId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
                       <externalMetadataColumns />
                     </output>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente"
                   componentClassID="Microsoft.OLEDBSource"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
@@ -861,7 +940,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Connections[OleDbConnection]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Connections[OleDbConnection]"
                       connectionManagerID="{F7EFFCDF-A546-41F2-9315-8434156A2D4D}:external"
                       connectionManagerRefId="Project.ConnectionManagers[COMERCIO_STAGE]"
                       description="The OLE DB runtime connection used to access the database."
@@ -869,209 +948,209 @@
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output]"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[IDCLIENTE]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]"
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[IDCLIENTE]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]"
                           name="IDCLIENTE"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]"
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
                           length="100"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]"
                           name="NOME"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]"
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[SEXO]"
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[SEXO]"
                           length="20"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]"
                           name="SEXO"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]"
                           dataType="dbDate"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[NASCIMENTO]"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]"
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[NASCIMENTO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]"
                           name="NASCIMENTO"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]"
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[CIDADE]"
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[CIDADE]"
                           length="100"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]"
                           name="CIDADE"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]"
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[ESTADO]"
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[ESTADO]"
                           length="20"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]"
                           name="ESTADO"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]"
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[REGIAO]"
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[REGIAO]"
                           length="20"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]"
                           name="REGIAO"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]"
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[EMAIL]"
+                          externalMetadataColumnId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[EMAIL]"
                           length="50"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]"
                           name="EMAIL"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[IDCLIENTE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[IDCLIENTE]"
                           dataType="i4"
                           name="IDCLIENTE" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
                           codePage="1252"
                           dataType="str"
                           length="100"
                           name="NOME" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[SEXO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[SEXO]"
                           codePage="1252"
                           dataType="str"
                           length="20"
                           name="SEXO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[NASCIMENTO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[NASCIMENTO]"
                           dataType="dbDate"
                           name="NASCIMENTO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[CIDADE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[CIDADE]"
                           codePage="1252"
                           dataType="str"
                           length="100"
                           name="CIDADE" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[ESTADO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[ESTADO]"
                           codePage="1252"
                           dataType="str"
                           length="20"
                           name="ESTADO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[REGIAO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[REGIAO]"
                           codePage="1252"
                           dataType="str"
                           length="20"
                           name="REGIAO" />
                         <externalMetadataColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[EMAIL]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].ExternalColumns[EMAIL]"
                           codePage="1252"
                           dataType="str"
-                          length="100"
+                          length="50"
                           name="EMAIL" />
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[IDCLIENTE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[IDCLIENTE]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[IDCLIENTE]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[IDCLIENTE]"
                           name="IDCLIENTE" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[NOME]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[NOME]"
                           codePage="1252"
                           dataType="str"
                           length="100"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[NOME]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[NOME]"
                           name="NOME" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[SEXO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[SEXO]"
                           codePage="1252"
                           dataType="str"
                           length="20"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[SEXO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[SEXO]"
                           name="SEXO" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[NASCIMENTO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[NASCIMENTO]"
                           dataType="dbDate"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[NASCIMENTO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[NASCIMENTO]"
                           name="NASCIMENTO" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[CIDADE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[CIDADE]"
                           codePage="1252"
                           dataType="str"
                           length="100"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[CIDADE]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[CIDADE]"
                           name="CIDADE" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ESTADO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ESTADO]"
                           codePage="1252"
                           dataType="str"
                           length="20"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ESTADO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ESTADO]"
                           name="ESTADO" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[REGIAO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[REGIAO]"
                           codePage="1252"
                           dataType="str"
                           length="20"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[REGIAO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[REGIAO]"
                           name="REGIAO" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[EMAIL]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[EMAIL]"
                           codePage="1252"
                           dataType="str"
-                          length="100"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[EMAIL]"
+                          length="50"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[EMAIL]"
                           name="EMAIL" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -1080,7 +1159,7 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Carga DW Cliente\Data Flow Task\Union All"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All"
                   componentClassID="Microsoft.UnionAll"
                   contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
                   description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
@@ -1088,254 +1167,254 @@
                   version="1">
                   <inputs>
                     <input
-                      refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 1]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 1]"
                       name="Union All Input 1">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[IDCLIENTE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 1].Columns[IDCLIENTE]"
                           cachedDataType="i4"
                           cachedName="IDCLIENTE"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[IDCLIENTE]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[IDCLIENTE]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[NOME]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 1].Columns[NOME]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="100"
                           cachedName="NOME"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[NOME]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[NOME]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[SEXO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 1].Columns[SEXO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="SEXO"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[SEXO]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[SEXO]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[NASCIMENTO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 1].Columns[NASCIMENTO]"
                           cachedDataType="dbDate"
                           cachedName="NASCIMENTO"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[NASCIMENTO]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[NASCIMENTO]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[CIDADE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 1].Columns[CIDADE]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="100"
                           cachedName="CIDADE"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[CIDADE]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[CIDADE]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[ESTADO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 1].Columns[ESTADO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="ESTADO"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ESTADO]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[ESTADO]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[REGIAO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 1].Columns[REGIAO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="REGIAO"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[REGIAO]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[REGIAO]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[EMAIL]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 1].Columns[EMAIL]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="50"
                           cachedName="EMAIL"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[EMAIL]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[EMAIL]}</property>
                           </properties>
                         </inputColumn>
                       </inputColumns>
                       <externalMetadataColumns />
                     </input>
                     <input
-                      refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 2]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 2]"
                       hasSideEffects="true"
                       name="Union All Input 2">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[IDCLIENTE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 2].Columns[IDCLIENTE]"
                           cachedDataType="i4"
                           cachedName="IDCLIENTE"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[IDCLIENTE]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[IDCLIENTE]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[NOME]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 2].Columns[NOME]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="100"
                           cachedName="NOME"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[NOME]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[NOME]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[SEXO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 2].Columns[SEXO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="SEXO"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[SEXO]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[SEXO]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[NASCIMENTO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 2].Columns[NASCIMENTO]"
                           cachedDataType="dbDate"
                           cachedName="NASCIMENTO"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[NASCIMENTO]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[NASCIMENTO]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[CIDADE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 2].Columns[CIDADE]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="100"
                           cachedName="CIDADE"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[CIDADE]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[CIDADE]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[ESTADO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 2].Columns[ESTADO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="ESTADO"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ESTADO]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[ESTADO]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[REGIAO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 2].Columns[REGIAO]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="20"
                           cachedName="REGIAO"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[REGIAO]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[REGIAO]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 2].Columns[EMAIL]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 2].Columns[EMAIL]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="50"
                           cachedName="EMAIL"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]">
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[EMAIL]}</property>
+                              name="OutputColumnLineageID">#{Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[EMAIL]}</property>
                           </properties>
                         </inputColumn>
                       </inputColumns>
                       <externalMetadataColumns />
                     </input>
                     <input
-                      refId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 3]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 3]"
                       dangling="true"
                       hasSideEffects="true"
                       name="Union All Input 3">
@@ -1344,60 +1423,60 @@
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1]"
+                      refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1]"
                       name="Union All Output 1">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[IDCLIENTE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[IDCLIENTE]"
                           dataType="i4"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[IDCLIENTE]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[IDCLIENTE]"
                           name="IDCLIENTE" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[NOME]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[NOME]"
                           codePage="1252"
                           dataType="str"
                           length="100"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[NOME]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[NOME]"
                           name="NOME" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[SEXO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[SEXO]"
                           codePage="1252"
                           dataType="str"
                           length="20"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[SEXO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[SEXO]"
                           name="SEXO" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[NASCIMENTO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[NASCIMENTO]"
                           dataType="dbDate"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[NASCIMENTO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[NASCIMENTO]"
                           name="NASCIMENTO" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[CIDADE]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[CIDADE]"
                           codePage="1252"
                           dataType="str"
                           length="100"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[CIDADE]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[CIDADE]"
                           name="CIDADE" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ESTADO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[ESTADO]"
                           codePage="1252"
                           dataType="str"
                           length="20"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ESTADO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[ESTADO]"
                           name="ESTADO" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[REGIAO]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[REGIAO]"
                           codePage="1252"
                           dataType="str"
                           length="20"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[REGIAO]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[REGIAO]"
                           name="REGIAO" />
                         <outputColumn
-                          refId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[EMAIL]"
+                          refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[EMAIL]"
                           codePage="1252"
                           dataType="str"
                           length="100"
-                          lineageId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[EMAIL]"
+                          lineageId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1].Columns[EMAIL]"
                           name="EMAIL" />
                       </outputColumns>
                       <externalMetadataColumns />
@@ -1407,40 +1486,45 @@
               </components>
               <paths>
                 <path
-                  refId="Package\Carga DW Cliente\Data Flow Task.Paths[Derived Column Output]"
-                  endId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Inputs[OLE DB Command Input]"
-                  name="Derived Column Output"
-                  startId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[Data Conversion Output]"
+                  endId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Outputs[Data Conversion Output]" />
                 <path
-                  refId="Package\Carga DW Cliente\Data Flow Task.Paths[Derived Column Output1]"
-                  endId="Package\Carga DW Cliente\Data Flow Task\Insert Destination.Inputs[OLE DB Destination Input]"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[Derived Column Output]"
+                  endId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Inputs[OLE DB Command Input]"
                   name="Derived Column Output"
-                  startId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Outputs[Derived Column Output]" />
+                  startId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Carga DW Cliente\Data Flow Task.Paths[Historical Attribute Inserts Output]"
-                  endId="Package\Carga DW Cliente\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[Derived Column Output1]"
+                  endId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email.Inputs[Data Conversion Input]"
+                  name="Derived Column Output"
+                  startId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[Historical Attribute Inserts Output]"
+                  endId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column.Inputs[Derived Column Input]"
                   name="Historical Attribute Inserts Output"
-                  startId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]" />
+                  startId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]" />
                 <path
-                  refId="Package\Carga DW Cliente\Data Flow Task.Paths[New Output]"
-                  endId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 1]"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[New Output]"
+                  endId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 1]"
                   name="New Output"
-                  startId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Outputs[New Output]" />
+                  startId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Outputs[New Output]" />
                 <path
-                  refId="Package\Carga DW Cliente\Data Flow Task.Paths[OLE DB Command Output]"
-                  endId="Package\Carga DW Cliente\Data Flow Task\Union All.Inputs[Union All Input 2]"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[OLE DB Command Output]"
+                  endId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Inputs[Union All Input 2]"
                   name="OLE DB Command Output"
-                  startId="Package\Carga DW Cliente\Data Flow Task\OLE DB Command.Outputs[OLE DB Command Output]" />
+                  startId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command.Outputs[OLE DB Command Output]" />
                 <path
-                  refId="Package\Carga DW Cliente\Data Flow Task.Paths[OLE DB Source Output]"
-                  endId="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[OLE DB Source Output]"
+                  endId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
                   name="OLE DB Source Output"
-                  startId="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente.Outputs[OLE DB Source Output]" />
+                  startId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente.Outputs[OLE DB Source Output]" />
                 <path
-                  refId="Package\Carga DW Cliente\Data Flow Task.Paths[Union All Output 1]"
-                  endId="Package\Carga DW Cliente\Data Flow Task\Derived Column 1.Inputs[Derived Column Input]"
+                  refId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[Union All Output 1]"
+                  endId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1.Inputs[Derived Column Input]"
                   name="Union All Output 1"
-                  startId="Package\Carga DW Cliente\Data Flow Task\Union All.Outputs[Union All Output 1]" />
+                  startId="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All.Outputs[Union All Output 1]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -1522,7 +1606,7 @@
                           dataType="wstr"
                           errorOrTruncationOperation="Computation"
                           errorRowDisposition="FailComponent"
-                          length="60"
+                          length="61"
                           lineageId="Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes\Atende requisitos.Outputs[Derived Column Output].Columns[NOME_COMPLETO]"
                           name="NOME_COMPLETO"
                           truncationRowDisposition="FailComponent">
@@ -1531,13 +1615,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">#{Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes\Tabela OLTP_CLIENTE.Outputs[OLE DB Source Output].Columns[NOME]} + "" + #{Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes\Tabela OLTP_CLIENTE.Outputs[OLE DB Source Output].Columns[SOBRENOME]}</property>
+                              name="Expression">#{Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes\Tabela OLTP_CLIENTE.Outputs[OLE DB Source Output].Columns[NOME]} + " " + #{Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes\Tabela OLTP_CLIENTE.Outputs[OLE DB Source Output].Columns[SOBRENOME]}</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">NOME + "" + SOBRENOME</property>
+                              name="FriendlyExpression">NOME + " " + SOBRENOME</property>
                           </properties>
                         </outputColumn>
                         <outputColumn
@@ -1606,7 +1690,7 @@
                         <inputColumn
                           refId="Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[NOME_COMPLETO]"
                           cachedDataType="wstr"
-                          cachedLength="60"
+                          cachedLength="61"
                           cachedName="NOME_COMPLETO"
                           lineageId="Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes\Atende requisitos.Outputs[Derived Column Output].Columns[NOME_COMPLETO]" />
                         <inputColumn
@@ -2008,7 +2092,7 @@ where [refTable].[ID_CLIENTE] = ?</property>
                         <inputColumn
                           refId="Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes\Tabela de Erro BI.Inputs[OLE DB Destination Input].Columns[NOME_COMPLETO]"
                           cachedDataType="wstr"
-                          cachedLength="60"
+                          cachedLength="61"
                           cachedName="NOME_COMPLETO"
                           externalMetadataColumnId="Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes\Tabela de Erro BI.Inputs[OLE DB Destination Input].ExternalColumns[NOME_COMPLETO]"
                           lineageId="Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes\Atende requisitos.Outputs[Derived Column Output].Columns[NOME_COMPLETO]" />
@@ -2623,6 +2707,21 @@ where [refTable].[ID_CLIENTE] = ?</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="224.8,41.6"
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes"
+          TopLeft="5.5,5.49999999999995" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="235.2,102.4"
+          Size="235.2,145.6"
+          Id="Package\Carga DW Cliente"
+          TopLeft="384.571435120642,87.482354168083" />
+        <NodeLayout
+          Size="240,41.6"
+          Id="Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes"
+          TopLeft="5.5,107.1" />
+        <NodeLayout
           Size="220.8,41.6"
           Id="Package\Carga Stage Cliente\Trunca Tabela STAGE Clientes"
           TopLeft="15.1,5.5" />
@@ -2648,10 +2747,6 @@ where [refTable].[ID_CLIENTE] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="240,41.6"
-          Id="Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes"
-          TopLeft="5.5,107.1" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -2659,43 +2754,20 @@ where [refTable].[ID_CLIENTE] = ?</property>
           Size="250.4,247.2"
           Id="Package\Carga Stage Cliente"
           TopLeft="23.4285718275576,43.4352947268106" />
-        <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Carga DW Cliente\Data Flow Task"
-          TopLeft="122.628580955583,13.4117670481593" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="278.4,110.4"
-          Size="278.4,153.6"
-          Id="Package\Carga DW Cliente"
-          TopLeft="379.428577890202,112.56470746103" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="273.828571827558,167.035294726811">
+          TopLeft="273.828571827558,163.658824447447">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="105.600006062644,22.3294127342199"
+              EndConnector="110.742863293084,0"
               Start="0,0"
-              End="98.100006062644,22.3294127342199">
+              End="103.242863293084,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="48.800003031322,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="48.800003031322,0"
-                    Point2="52.800003031322,0"
-                    Point3="52.800003031322,4" />
-                  <mssgle:LineSegment
-                    End="52.800003031322,18.3294127342199" />
-                  <mssgle:CubicBezierSegment
-                    Point1="52.800003031322,18.3294127342199"
-                    Point2="52.800003031322,22.3294127342199"
-                    Point3="56.800003031322,22.3294127342199" />
-                  <mssgle:LineSegment
-                    End="98.100006062644,22.3294127342199" />
+                    End="103.242863293084,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2707,6 +2779,357 @@ where [refTable].[ID_CLIENTE] = ?</property>
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\Carga DW Cliente\Carrega Tabela de DW Clientes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Union All"
+          TopLeft="170.9,411.9" />
+        <NodeLayout
+          Size="175.2,41.6"
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente"
+          TopLeft="143.3,5.49999999999995" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column 1"
+          TopLeft="149.7,513.5" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\OLE DB Command"
+          TopLeft="5.50000000000003,310.3" />
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension"
+          TopLeft="126.9,107.1" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Derived Column"
+          TopLeft="17.5,208.7" />
+        <EdgeLayout
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[Historical Attribute Inserts Output]"
+          TopLeft="197.566666666667,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-103.666666666667,59.9999999999999"
+              Start="0,0"
+              End="-103.666666666667,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2748091603053" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2748091603053"
+                    Point2="0,24.2748091603053"
+                    Point3="-4,24.2748091603053" />
+                  <mssgle:LineSegment
+                    End="-99.6666666666666,24.2748091603053" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-99.6666666666666,24.2748091603053"
+                    Point2="-103.666666666667,24.2748091603053"
+                    Point3="-103.666666666667,28.2748091603053" />
+                  <mssgle:LineSegment
+                    End="-103.666666666667,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-126.889720052083,29.2748091603053,150.1127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[Derived Column Output]"
+          TopLeft="90.9,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[Union All Output 1]"
+          TopLeft="230.9,453.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[OLE DB Source Output]"
+          TopLeft="230.9,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[OLE DB Command Output]"
+          TopLeft="87.9,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="124.333333333333,59.9999999999999"
+              Start="0,0"
+              End="124.333333333333,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5263157894736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5263157894736"
+                    Point2="0,35.5263157894736"
+                    Point3="4,35.5263157894736" />
+                  <mssgle:LineSegment
+                    End="120.333333333333,35.5263157894736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="120.333333333333,35.5263157894736"
+                    Point2="124.333333333333,35.5263157894736"
+                    Point3="124.333333333333,39.5263157894736" />
+                  <mssgle:LineSegment
+                    End="124.333333333333,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[New Output]"
+          TopLeft="264.233333333333,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.6666666666667,263.2"
+              Start="0,0"
+              End="-14.6666666666667,255.7">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,126.695815115553" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,126.695815115553"
+                    Point2="0,130.695815115553"
+                    Point3="-4,130.695815115553" />
+                  <mssgle:LineSegment
+                    End="-10.6666666666667,130.695815115553" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.6666666666667,130.695815115553"
+                    Point2="-14.6666666666667,130.695815115553"
+                    Point3="-14.6666666666667,134.695815115553" />
+                  <mssgle:LineSegment
+                    End="-14.6666666666667,255.7" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-34.4247200520833,135.695815115553,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Converte Email"
+          TopLeft="156.1,615.099999999999" />
+        <EdgeLayout
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[Derived Column Output1]"
+          TopLeft="230.9,555.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination"
+          TopLeft="149.7,716.699999999999" />
+        <EdgeLayout
+          Id="Package\Carga DW Cliente\Carrega Tabela de DW Clientes.Paths[Data Conversion Output]"
+          TopLeft="230.9,656.699999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Tabela Stage Cliente">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{73CEFA2D-8306-42AB-A207-EBE6FCDDD68B}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[DW].[DIM_CLIENTE]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CIDADE&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;EMAIL&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;ESTADO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;IDCLIENTE&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;NASCIMENTO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;NOME&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;REGIAO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;SEXO&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;true&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn&gt;INICIO&lt;/StartDateColumn&gt;
+  &lt;EndDateColumn&gt;FIM&lt;/EndDateColumn&gt;
+  &lt;DateVariable&gt;System::StartTime&lt;/DateVariable&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Carga Stage Cliente\Carrega Tabela de STAGE Clientes">
     <LayoutInfo>
@@ -2790,7 +3213,7 @@ where [refTable].[ID_CLIENTE] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-146.958053385417,29.3546798029556,96.3827734375,11.609375"
+              BoundingBox="-146.958053385416,29.3546798029556,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2939,333 +3362,8 @@ where [refTable].[ID_CLIENTE] = ?</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Carga DW Cliente\Data Flow Task">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="175.2,41.6"
-          Id="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente"
-          TopLeft="143.3,5.49999999999995" />
-        <NodeLayout
-          Size="208,41.6"
-          Id="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension"
-          TopLeft="126.9,107.1" />
-        <EdgeLayout
-          Id="Package\Carga DW Cliente\Data Flow Task.Paths[OLE DB Source Output]"
-          TopLeft="230.9,47.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\Carga DW Cliente\Data Flow Task\Derived Column"
-          TopLeft="17.5,208.7" />
-        <EdgeLayout
-          Id="Package\Carga DW Cliente\Data Flow Task.Paths[Historical Attribute Inserts Output]"
-          TopLeft="197.566666666667,148.7">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-103.666666666667,59.9999999999999"
-              Start="0,0"
-              End="-103.666666666667,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.2748091603053" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.2748091603053"
-                    Point2="0,24.2748091603053"
-                    Point3="-4,24.2748091603053" />
-                  <mssgle:LineSegment
-                    End="-99.6666666666667,24.2748091603053" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-99.6666666666667,24.2748091603053"
-                    Point2="-103.666666666667,24.2748091603053"
-                    Point3="-103.666666666667,28.2748091603053" />
-                  <mssgle:LineSegment
-                    End="-103.666666666667,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-126.889720052083,29.2748091603053,150.1127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Carga DW Cliente\Data Flow Task\OLE DB Command"
-          TopLeft="5.50000000000003,310.3" />
-        <EdgeLayout
-          Id="Package\Carga DW Cliente\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="90.9,250.3">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="120,41.6"
-          Id="Package\Carga DW Cliente\Data Flow Task\Union All"
-          TopLeft="170.9,411.9" />
-        <EdgeLayout
-          Id="Package\Carga DW Cliente\Data Flow Task.Paths[New Output]"
-          TopLeft="264.233333333333,148.7">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-14.6666666666666,263.2"
-              Start="0,0"
-              End="-14.6666666666666,255.7">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,126.695815115553" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,126.695815115553"
-                    Point2="0,130.695815115553"
-                    Point3="-4,130.695815115553" />
-                  <mssgle:LineSegment
-                    End="-10.6666666666666,130.695815115553" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-10.6666666666666,130.695815115553"
-                    Point2="-14.6666666666666,130.695815115553"
-                    Point3="-14.6666666666666,134.695815115553" />
-                  <mssgle:LineSegment
-                    End="-14.6666666666666,255.7" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-34.4247200520833,135.695815115553,54.1827734375,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Carga DW Cliente\Data Flow Task.Paths[OLE DB Command Output]"
-          TopLeft="87.9,351.9">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="124.333333333333,59.9999999999999"
-              Start="0,0"
-              End="124.333333333333,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.5263157894736" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.5263157894736"
-                    Point2="0,35.5263157894736"
-                    Point3="4,35.5263157894736" />
-                  <mssgle:LineSegment
-                    End="120.333333333333,35.5263157894736" />
-                  <mssgle:CubicBezierSegment
-                    Point1="120.333333333333,35.5263157894736"
-                    Point2="124.333333333333,35.5263157894736"
-                    Point3="124.333333333333,39.5263157894736" />
-                  <mssgle:LineSegment
-                    End="124.333333333333,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="162.4,41.6"
-          Id="Package\Carga DW Cliente\Data Flow Task\Derived Column 1"
-          TopLeft="149.7,513.5" />
-        <EdgeLayout
-          Id="Package\Carga DW Cliente\Data Flow Task.Paths[Union All Output 1]"
-          TopLeft="230.9,453.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="162.4,41.6"
-          Id="Package\Carga DW Cliente\Data Flow Task\Insert Destination"
-          TopLeft="149.7,615.099999999999" />
-        <EdgeLayout
-          Id="Package\Carga DW Cliente\Data Flow Task.Paths[Derived Column Output1]"
-          TopLeft="230.9,555.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Carga DW Cliente\Data Flow Task\Tabela Stage Cliente">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Carga DW Cliente\Data Flow Task\Slowly Changing Dimension">
-    <Properties>
-      <Property>
-        <Name>SCDMetadata</Name>
-        <Value
-          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionID&gt;{73CEFA2D-8306-42AB-A207-EBE6FCDDD68B}&lt;/ConnectionID&gt;
-  &lt;TableName&gt;[DW].[DIM_CLIENTE]&lt;/TableName&gt;
-  &lt;InputToColumnsCollection&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[CIDADE]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;CIDADE&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[EMAIL]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;EMAIL&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[ESTADO]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;ESTADO&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[IDCLIENTE]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;IDCLIENTE&lt;/ColumnName&gt;
-      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
-      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NASCIMENTO]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;NASCIMENTO&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[NOME]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;NOME&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[REGIAO]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;REGIAO&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Tabela Stage Cliente.Outputs[OLE DB Source Output].Columns[SEXO]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;SEXO&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-  &lt;/InputToColumnsCollection&gt;
-  &lt;GeneratedComponentsIdentificationStrings&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
-  &lt;/GeneratedComponentsIdentificationStrings&gt;
-  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
-  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
-  &lt;UseStartEndDate&gt;true&lt;/UseStartEndDate&gt;
-  &lt;CurrentIndicatorColumn /&gt;
-  &lt;InferredIndicatorColumn /&gt;
-  &lt;ValueCurrent /&gt;
-  &lt;ValueExpired /&gt;
-  &lt;StartDateColumn&gt;INICIO&lt;/StartDateColumn&gt;
-  &lt;EndDateColumn&gt;FIM&lt;/EndDateColumn&gt;
-  &lt;DateVariable&gt;System::StartTime&lt;/DateVariable&gt;
-  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
-&lt;/SCDWizardMetadata&gt;</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Carga DW Cliente\Data Flow Task\Insert Destination">
+    design-time-name="Package\Carga DW Cliente\Carrega Tabela de DW Clientes\Insert Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
